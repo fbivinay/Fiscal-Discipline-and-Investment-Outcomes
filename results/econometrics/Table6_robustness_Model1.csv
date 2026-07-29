@@ -1,0 +1,5 @@
+Specification,n,fd_coef,fd_p,debt_coef,debt_p,otr_coef,otr_p,capex_coef,capex_p
+Baseline (all data),48,0.566,0.0,0.353,0.0,0.107,0.684,-0.173,0.571
+Excl. COVID year (FY2020-21),39,0.802,0.017,0.324,0.002,0.535,0.26,-0.207,0.48
+Excl. Jharkhand,43,-0.31,0.141,0.182,0.015,0.019,0.922,0.414,0.084
+Excl. Uttar Pradesh,45,0.532,0.0,0.366,0.0,0.092,0.711,-0.186,0.555

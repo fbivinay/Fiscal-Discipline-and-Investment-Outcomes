@@ -1,0 +1,14 @@
+File,Content,Status
+1_GFD_pct_GSDP.csv,Gross Fiscal Deficit % GSDP - 10 states x 5 years,COMPLETE - AUDITED ACTUALS (FC-16 Annexure 5.1)
+2_Debt_to_GSDP.csv,Outstanding Liabilities % GSDP,COMPLETE - AUDITED ACTUALS (FC-16 Annexure 5.3)
+3_OwnTaxRevenue_pct_GSDP.csv,Own Tax Revenue % GSDP,COMPLETE - AUDITED ACTUALS (FC-16 Annexure 5.5)
+4_CapitalExpenditure_pct_GSDP.csv,Capital expenditure % GSDP (derived GFD-RD; incl net lending) + exact cross-checks,COMPLETE - derived from audited actuals; method disclosed
+5_RevenueDeficit_pct_GSDP.csv,Revenue Deficit % GSDP (bonus variable; negative=surplus),COMPLETE - AUDITED ACTUALS (FC-16 Annexure 5.2)
+6_Fiscal_Discipline_Ranking.csv,Composite ranking from real 5yr averages,COMPLETE - computed
+7_Ranks_and_Correlations.csv,Discipline vs FDI vs PC-GSDP ranks + Spearman results,COMPLETE - computed
+8_master_panel.csv,50-row analysis-ready panel (fiscal + FDI + GSDP + logs + covid dummy),COMPLETE - ready for regression
+
+PRIMARY SOURCE,16th Finance Commission Report Volume II Chapter 5 Annexures (indiabudget.gov.in/doc/16fcvol2.pdf). Based on States' Finance Accounts (CAG-audited actuals) and MoSPI comparable GSDP (2011-12 series). Figures adjusted for GST compensation loans.,
+DEFINITIONAL NOTE,FC-16 figures use MoSPI comparable GSDP and GST-loan adjustment so they differ slightly from PRS/state-budget-document figures (e.g. Gujarat FY24 debt: 20.6 FC-16 vs 15.3 budget docs). Use ONE source consistently - this panel uses FC-16 throughout.,
+CAPEX NOTE,"Capital expenditure derived via identity GFD = RD + CapOutlay + NetLending, so derived value slightly exceeds pure capital outlay. Cross-check columns in file 4 show exact capital outlay from budget documents for FY23(A)/FY24(RE).",
+UP NOTE,"UP FDI recorded only from FY2021-22 (DPIIT data start) - marked NA earlier, not zero. UP ranks best on composite discipline but last on FDI - major outlier; run correlations with and without UP.",

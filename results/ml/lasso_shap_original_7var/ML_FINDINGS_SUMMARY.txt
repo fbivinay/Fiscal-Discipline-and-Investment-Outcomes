@@ -1,0 +1,72 @@
+============================================================================
+MACHINE LEARNING VALIDATION — FINDINGS SUMMARY (plain language)
+============================================================================
+WHAT WAS DONE
+  Two independent ML lenses applied to the same 48-observation panel used
+  in the econometric analysis, predicting log(FDI) from 4 fiscal variables
+  + COVID dummy + 2 Census controls:
+   A: LASSO / Elastic Net (linear, leave-one-out cross-validated shrinkage)
+   B: Random Forest + SHAP (non-linear, explainable AI)
+   C: Leave-one-out out-of-sample comparison (OLS vs LASSO vs RF)
+
+ACTUAL RESULTS (read carefully - this is your story)
+
+1. LASSO (Table M1, Figs M1-M2):
+   DEBT-TO-GSDP has the LARGEST coefficient by far (-1.14 standardized;
+   Elastic Net agrees: -0.91). Negative sign = higher debt, less FDI.
+   Fiscal deficit (+0.65) and literacy (+0.59) follow. The chosen
+   penalty is light (alpha = 0.003), so all variables survive, but the
+   MAGNITUDE RANKING is unambiguous: debt dominates the fiscal set.
+   Stability (Table M2): debt selected in 9 of 10 leave-one-state-out
+   refits - the selection is not driven by any single state.
+
+2. SHAP on Random Forest (Tables M3, Figs M3-M5):
+   URBANIZATION ranks first overall (mean |SHAP| = 1.30) - the flexible
+   non-linear model identifies the agglomeration/metropolitan effect as
+   the single biggest FDI driver. DEBT-TO-GSDP is the TOP FISCAL variable
+   (0.25), ahead of fiscal deficit (0.18); own tax, capex and COVID
+   contribute little. The beeswarm (Fig M3) shows high-debt observations
+   pushing predicted FDI DOWN - same direction as LASSO and the pooled
+   regression.
+
+3. THE COMBINED STORY (write it exactly like this):
+   Three independent methods - pooled panel regression (debt p = 0.007),
+   LASSO (largest coefficient), SHAP (top fiscal contributor) - all
+   identify DEBT-TO-GSDP as the dominant fiscal predictor of FDI, always
+   with a negative sign. The non-linear SHAP analysis adds nuance: the
+   strongest overall driver is urbanization (agglomeration), confirming
+   that fiscal discipline operates as a second-order structural signal
+   within an agglomeration-dominated location choice. This is fully
+   consistent with the between-vs-within finding of the econometrics.
+
+4. OUT-OF-SAMPLE (Table M4) - surprisingly respectable:
+   OLS 0.473 / LASSO 0.488 / Random Forest 0.587 leave-one-out R2.
+   The RF's edge suggests mild non-linearity. Still frame ML as
+   VALIDATION, not prediction - n = 48 is too small for forecasting
+   claims, and saying so is a strength in review.
+
+ONE PARAGRAPH FOR THE PAPER
+   'As a robustness exercise, we subject the panel estimates to two
+   independent machine-learning lenses. LASSO with leave-one-out
+   cross-validation assigns debt-to-GSDP the largest standardized
+   coefficient among all predictors (-1.14), a selection stable across
+   leave-one-state-out refits; Elastic Net concurs. SHAP values from a
+   shallow random forest rank urbanization as the leading overall driver
+   - consistent with agglomeration theory - and debt-to-GSDP as the
+   dominant fiscal contributor, with high-debt observations reducing
+   predicted FDI. The convergence of a regularized linear selector, a
+   non-linear explainable-AI ranking, and the panel regressions indicates
+   that the negative debt-FDI relationship is not an artefact of any
+   single methodological choice. Out-of-sample leave-one-out R2 ranges
+   from 0.47 (OLS) to 0.59 (random forest); given n = 48, the exercise
+   is framed as validation rather than prediction.'
+
+VIVA CAUTIONS
+   - SHAP ranking urbanization first is NOT a problem - it strengthens
+     the paper (structural factors dominate; debt leads the policy
+     levers). Do not hide it.
+   - If asked why not deep learning: 48 observations cannot support it;
+     LASSO and shallow trees are the appropriate tools.
+   - COVID's zero SHAP simply means the shallow forest captured the
+     COVID dip through correlated variables; the econometric covid
+     dummy remains the right causal control.

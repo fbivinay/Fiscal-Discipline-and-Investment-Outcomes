@@ -1,0 +1,11 @@
+Composite_Rank,State,Composite_Score(avg of 4 ranks; lower=more disciplined),GFD_5yr_avg,GFD_rank,Debt_5yr_avg,Debt_rank,OTR_5yr_avg,OTR_rank,CapEx_5yr_avg,CapEx_rank
+1.0,Uttar Pradesh,3.375,2.0,3.5,30.78,7.0,7.54,2.0,3.9,1.0
+2.0,Maharashtra,3.625,2.0,3.5,18.64,1.0,7.14,3.0,1.54,7.0
+3.0,Telangana,4.0,3.62,8.0,27.5,4.0,7.7,1.0,3.1,3.0
+4.0,Gujarat,4.25,1.36,1.0,22.54,3.0,6.08,8.0,1.98,5.0
+5.0,Karnataka,4.5,2.52,5.0,22.0,2.0,6.16,7.0,2.54,4.0
+6.0,Jharkhand,4.75,1.92,2.0,29.96,6.0,5.78,9.0,3.58,2.0
+7.0,Tamil Nadu,6.0,3.94,9.0,29.04,5.0,6.42,4.0,1.78,6.0
+8.0,Haryana,7.0,3.34,7.0,31.04,8.0,6.28,5.0,1.5,8.0
+9.5,Rajasthan,8.75,4.16,10.0,37.6,9.0,6.2,6.0,1.34,10.0
+9.5,West Bengal,8.75,3.32,6.0,39.1,10.0,5.36,10.0,1.48,9.0

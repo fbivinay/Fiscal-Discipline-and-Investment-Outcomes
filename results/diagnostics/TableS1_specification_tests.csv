@@ -1,0 +1,34 @@
+Part,Test,Statistic,p-value,What it says,"Caveat at N=10, T=5"
+A. Estimator,"Hausman FE vs RE [Model 1, log FDI]",,,NOT COMPUTABLE — covariance difference not positive definite,"Common at small N; report as inconclusive, do not suppress"
+A. Estimator,"Breusch-Pagan LM, pooled vs RE [Model 1, log FDI]",0.3969,0.5287,No panel effect detected,Unbalanced panel; LM uses the mean group size
+A. Estimator,"F-test for poolability, pooled vs FE [Model 1, log FDI]",6.7414,0.0,State effects jointly significant — FE justified,
+A. Estimator,"Hausman FE vs RE [Model 2, GSDP growth]",6.3189,0.1766,RE not rejected; FE still consistent,chi2 approximation is asymptotic in N
+A. Estimator,"Breusch-Pagan LM, pooled vs RE [Model 2, GSDP growth]",2.5691,0.109,No panel effect detected,Unbalanced panel; LM uses the mean group size
+A. Estimator,"F-test for poolability, pooled vs FE [Model 2, GSDP growth]",0.8182,0.6033,"State effects NOT jointly significant — FE is a modelling choice, not a test result",
+B. Errors,"Pesaran CD, cross-sectional dependence [Model 1]",0.0187,0.9851,No dependence detected; DK is conservative rather than required,CD is asymptotic in N; N=10 gives it little power
+B. Errors,Wooldridge AR(1) in first differences [Model 1],-0.0506,0.8099,No AR(1) detected (rho=-0.051); -0.5 would mean no serial correlation,Asymptotic in T; T=5 gives two usable differences per state
+B. Errors,"Modified Wald, groupwise heteroskedasticity [Model 1]",347.3273,0.0,Error variance differs by state — robust SEs justified,Each state contributes ~5 residuals; treat as indicative
+B. Errors,"Pesaran CD, cross-sectional dependence [Model 2]",8.3967,0.0,Cross-sectional dependence present — Driscoll-Kraay justified,CD is asymptotic in N; N=10 gives it little power
+B. Errors,Wooldridge AR(1) in first differences [Model 2],-0.092,0.5311,No AR(1) detected (rho=-0.092); -0.5 would mean no serial correlation,Asymptotic in T; T=5 gives two usable differences per state
+B. Errors,"Modified Wald, groupwise heteroskedasticity [Model 2]",184.5792,0.0,Error variance differs by state — robust SEs justified,Each state contributes ~5 residuals; treat as indicative
+C. Form,"Ramsey RESET, powers of fitted values",1.4545,0.2456,No evidence of misspecification,
+C. Form,"Within R-squared, dependent = log(FDI)",0.4292,,,"Not a test, a comparison"
+C. Form,"Within R-squared, dependent = asinh(FDI)",0.4292,,,"Not a test, a comparison"
+C. Form,"Within R-squared, dependent = FDI in levels",0.1084,,log and asinh are near-identical here; levels fit far worse,"Not a test, a comparison"
+D. Inference,"FE debt coefficient, SE = Driscoll-Kraay (kernel)",0.3533,0.0,"coef +0.353, SE 0.042",
+D. Inference,"FE debt coefficient, SE = Cluster-robust by state",0.3533,0.0002,"coef +0.353, SE 0.084",
+D. Inference,"FE debt coefficient, SE = Unadjusted",0.3533,0.0021,"coef +0.353, SE 0.106",
+D. Inference,"FE debt coefficient, cluster bootstrap (2000 draws)",0.2983,,"95% CI [+0.074, +0.522]; excludes zero: True","Resamples states, so it respects the panel structure"
+E. Spec curve,Pooled: debt coefficient negative,,,100% of 88 specifications; negative AND p<0.05 in 89%,
+E. Spec curve,FE: debt coefficient negative,,,0% of 44 specifications; negative AND p<0.05 in 0%,
+F. ML tuning,"Random forest grid search, state-blocked CV",0.1277,,"best: max_depth=3.0, min_samples_leaf=3.0 (paper uses depth 3, leaf 4)","25 combinations, 10 folds each"
+F. ML tuning,"Paper's hand-chosen setting (depth 3, leaf 4)",0.0852,,ranks 5 of 25; spread across the whole grid is 0.290 R2,
+G. Wild bootstrap,Model 1 pooled: debt,-0.176,0.057,cluster p=0.0071 -> bootstrap p=0.0570   <<< VERDICT CHANGES,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 1 pooled: literacy,0.1006,0.235,cluster p=0.0352 -> bootstrap p=0.2350   <<< VERDICT CHANGES,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 1 pooled: capital expenditure,-0.3659,0.0945,cluster p=0.0083 -> bootstrap p=0.0945   <<< VERDICT CHANGES,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 1 within: debt,0.3533,0.031,cluster p=0.0002 -> bootstrap p=0.0310,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 1 within: fiscal deficit,0.566,0.836,cluster p=0.2637 -> bootstrap p=0.8360,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 2 within: fiscal deficit,-2.1719,0.4475,cluster p=0.3100 -> bootstrap p=0.4475,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 2 within: debt,1.0967,0.02,cluster p=0.0013 -> bootstrap p=0.0200,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 2 within: own tax revenue,4.083,0.028,cluster p=0.0450 -> bootstrap p=0.0280,1999 Rademacher draws over 10 clusters
+G. Wild bootstrap,Model 2 within: COVID dummy,-13.7826,0.003,cluster p=0.0000 -> bootstrap p=0.0030,1999 Rademacher draws over 10 clusters

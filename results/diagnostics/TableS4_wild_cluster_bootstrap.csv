@@ -1,0 +1,10 @@
+Coefficient,Estimate,Cluster-robust p,Wild cluster bootstrap p,Significant at 5% under bootstrap
+Model 1 pooled: debt,-0.176,0.0071,0.057,no
+Model 1 pooled: literacy,0.1006,0.0352,0.235,no
+Model 1 pooled: capital expenditure,-0.3659,0.0083,0.0945,no
+Model 1 within: debt,0.3533,0.0002,0.031,YES
+Model 1 within: fiscal deficit,0.566,0.2637,0.836,no
+Model 2 within: fiscal deficit,-2.1719,0.31,0.4475,no
+Model 2 within: debt,1.0967,0.0013,0.02,YES
+Model 2 within: own tax revenue,4.083,0.045,0.028,YES
+Model 2 within: COVID dummy,-13.7826,0.0,0.003,YES
