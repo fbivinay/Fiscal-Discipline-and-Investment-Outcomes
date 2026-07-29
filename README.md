@@ -10,6 +10,8 @@ rvinaykumar6924@gmail.com
 Department of Advanced Computing, St. Joseph's University, Bengaluru, Karnataka, India
 duttasanjay098@gmail.com
 
+**📄 [Download the paper](https://github.com/fbivinay/Fiscal-Discipline-and-Investment-Outcomes/raw/main/paper/Fiscal_Discipline_and_Investment_Outcomes.docx)** (.docx — GitHub cannot preview it in the browser)
+
 ---
 
 ## What this study asks
