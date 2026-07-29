@@ -1,0 +1,5 @@
+Quantity,Value
+Observed top variable,Debt-to-GSDP
+Observed top-to-second mean|SHAP| gap,0.8102
+"P(debt ranks #1 | y permuted), 500 draws",0.2854
+"P(gap >= observed | y permuted), 500 draws",0.004

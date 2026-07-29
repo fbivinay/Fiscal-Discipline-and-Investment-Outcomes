@@ -1,0 +1,18 @@
+State,Fiscal_Discipline_Composite_Rank,FDI_5yr_Total_INRcr,FDI_Rank,PerCapita_GSDP_2023-24_INR,PC_GSDP_Rank
+Maharashtra,2.0,530294,1,319474,6
+Karnataka,5.0,389480,2,376402,2
+Gujarat,4.0,299622,3,336875,5
+Tamil Nadu,7.0,84238,4,349248,4
+Haryana,8.0,75260,5,356829,3
+Telangana,3.0,60860,6,382870,1
+Jharkhand,6.0,19383,7,117124,9
+Rajasthan,9.5,18052,8,186610,7
+West Bengal,9.5,12391,9,166196,8
+Uttar Pradesh,1.0,7754,10,111475,10
+
+SPEARMAN RANK CORRELATIONS,,,,,
+Discipline vs FDI (n=10): rho=0.255 p=0.476,,,,,
+Discipline vs PerCapita GSDP (n=10): rho=0.012 p=0.973,,,,,
+Discipline vs FDI excluding UP (n=9; UP FDI left-censored from FY22): rho=0.728 p=0.026,,,,,
+Discipline vs PerCapita GSDP excluding UP (n=9): rho=0.393 p=0.295,,,,,
+Significance threshold n=10: |rho|>=0.648 at p=0.05 two-tailed,,,,,

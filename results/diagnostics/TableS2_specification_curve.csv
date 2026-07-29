@@ -1,0 +1,133 @@
+estimator,covid,controls,dep,dropped_state,n,debt_coef,debt_p
+Pooled,keep COVID year,no controls,log_fdi,West Bengal,43,-0.2691934771818443,9.551634056848002e-05
+Pooled,keep COVID year,no controls,ihs_fdi,West Bengal,43,-0.26919179438490554,9.549547587206497e-05
+Pooled,drop COVID year,no controls,log_fdi,West Bengal,35,-0.26898949143716466,0.000172993170932223
+Pooled,drop COVID year,no controls,ihs_fdi,West Bengal,35,-0.2689874222172459,0.00017297214838318808
+Pooled,drop COVID year,no controls,log_fdi,Tamil Nadu,35,-0.2658597551881896,0.00015440372024499993
+Pooled,drop COVID year,no controls,ihs_fdi,Tamil Nadu,35,-0.2658581750993779,0.000154377646380377
+Pooled,drop COVID year,no controls,log_fdi,Haryana,35,-0.26534039942009036,9.021802549424862e-05
+Pooled,drop COVID year,no controls,ihs_fdi,Haryana,35,-0.2653384651035986,9.020708553975076e-05
+Pooled,drop COVID year,no controls,log_fdi,Uttar Pradesh,36,-0.2618960606113377,0.00192257846568622
+Pooled,drop COVID year,no controls,ihs_fdi,Uttar Pradesh,36,-0.26189341771813857,0.0019224757434852524
+Pooled,keep COVID year,no controls,log_fdi,Tamil Nadu,43,-0.26043194463966846,8.838907056207823e-05
+Pooled,keep COVID year,no controls,ihs_fdi,Tamil Nadu,43,-0.2604307622850205,8.836767444941884e-05
+Pooled,drop COVID year,no controls,log_fdi,Maharashtra,35,-0.258158619267021,0.0005658074004277758
+Pooled,drop COVID year,no controls,ihs_fdi,Maharashtra,35,-0.2581568302258739,0.0005657545304793565
+Pooled,keep COVID year,no controls,log_fdi,Uttar Pradesh,45,-0.25517570654036753,0.0011294242086332673
+Pooled,keep COVID year,no controls,ihs_fdi,Uttar Pradesh,45,-0.2551737380325125,0.001129280491509288
+Pooled,drop COVID year,no controls,log_fdi,Telangana,35,-0.25349599396074735,0.0002897294754213853
+Pooled,drop COVID year,no controls,ihs_fdi,Telangana,35,-0.25349479182529255,0.0002896828118441608
+Pooled,keep COVID year,no controls,log_fdi,Haryana,43,-0.2525339503228642,9.327335245656876e-05
+Pooled,keep COVID year,no controls,ihs_fdi,Haryana,43,-0.25253274170868006,9.325212658062298e-05
+Pooled,keep COVID year,no controls,log_fdi,Telangana,43,-0.24968333284477207,9.327043100060273e-05
+Pooled,keep COVID year,no controls,ihs_fdi,Telangana,43,-0.24968260072312976,9.324481126782302e-05
+Pooled,keep COVID year,no controls,log_fdi,Maharashtra,43,-0.24631587161198834,0.00021146653477144284
+Pooled,keep COVID year,no controls,ihs_fdi,Maharashtra,43,-0.2463146316791975,0.00021142411039187792
+Pooled,drop COVID year,no controls,log_fdi,none,39,-0.2455347132551989,0.00023269410623805165
+Pooled,drop COVID year,no controls,ihs_fdi,none,39,-0.24553324845644217,0.00023266351567019505
+Pooled,drop COVID year,no controls,log_fdi,Gujarat,35,-0.2400819135636523,0.000945419798550784
+Pooled,drop COVID year,no controls,ihs_fdi,Gujarat,35,-0.24008071032591916,0.0009453187587862288
+Pooled,keep COVID year,no controls,log_fdi,none,48,-0.2395045045919083,8.947470298670268e-05
+Pooled,keep COVID year,no controls,ihs_fdi,none,48,-0.23950362090605756,8.945271024152213e-05
+Pooled,drop COVID year,no controls,log_fdi,Rajasthan,35,-0.2322344087090908,0.0007820761127150799
+Pooled,drop COVID year,no controls,ihs_fdi,Rajasthan,35,-0.23223359316289532,0.0007819875094725592
+Pooled,keep COVID year,no controls,log_fdi,Gujarat,43,-0.2302492034121764,0.0005403941151445046
+Pooled,keep COVID year,no controls,ihs_fdi,Gujarat,43,-0.23024871009378198,0.0005402782368819636
+Pooled,keep COVID year,no controls,log_fdi,Rajasthan,43,-0.22866204678913357,0.00012708468674449414
+Pooled,keep COVID year,no controls,ihs_fdi,Rajasthan,43,-0.22866150873685195,0.00012705338945995237
+Pooled,drop COVID year,Census controls,log_fdi,Maharashtra,35,-0.21761524812138205,0.011663637616234679
+Pooled,drop COVID year,Census controls,ihs_fdi,Maharashtra,35,-0.21761334028155596,0.011663740492674934
+Pooled,keep COVID year,Census controls,log_fdi,Maharashtra,43,-0.20880688713685594,0.0036667240205718876
+Pooled,keep COVID year,Census controls,ihs_fdi,Maharashtra,43,-0.20880490202298715,0.003666621547365745
+Pooled,keep COVID year,Census controls,log_fdi,Telangana,43,-0.2040316553458425,0.010543290858801457
+Pooled,keep COVID year,Census controls,ihs_fdi,Telangana,43,-0.20403133591619182,0.010541633601809597
+Pooled,keep COVID year,no controls,log_fdi,Karnataka,43,-0.19841066245593636,0.0009492372084931588
+Pooled,keep COVID year,no controls,ihs_fdi,Karnataka,43,-0.1984101962259298,0.0009490099611728642
+Pooled,drop COVID year,Census controls,log_fdi,Haryana,35,-0.19769648225384132,0.015440286095308231
+Pooled,drop COVID year,Census controls,ihs_fdi,Haryana,35,-0.19769571175170544,0.01543936954278946
+Pooled,drop COVID year,no controls,log_fdi,Karnataka,35,-0.19410818576799005,0.0016429566326405798
+Pooled,drop COVID year,no controls,ihs_fdi,Karnataka,35,-0.19410664057915336,0.0016426719360120856
+Pooled,drop COVID year,Census controls,log_fdi,Gujarat,35,-0.1939196310497028,0.032728055557382785
+Pooled,drop COVID year,Census controls,ihs_fdi,Gujarat,35,-0.1939186245306867,0.032726213222107114
+Pooled,keep COVID year,Census controls,log_fdi,Haryana,43,-0.19171615372938097,0.005727694031034902
+Pooled,keep COVID year,Census controls,ihs_fdi,Haryana,43,-0.19171563340526826,0.005727030139384803
+Pooled,drop COVID year,Census controls,log_fdi,Telangana,35,-0.19141998799015758,0.03844967640629404
+Pooled,drop COVID year,Census controls,ihs_fdi,Telangana,35,-0.19141984219034514,0.03844625533352963
+Pooled,keep COVID year,Census controls,log_fdi,Rajasthan,43,-0.18911277969284365,0.011924384175543645
+Pooled,keep COVID year,Census controls,ihs_fdi,Rajasthan,43,-0.1891124793312187,0.01192276107174739
+Pooled,drop COVID year,Census controls,log_fdi,Rajasthan,35,-0.1890525565846801,0.03001216218874503
+Pooled,drop COVID year,Census controls,ihs_fdi,Rajasthan,35,-0.18905204830638414,0.03000971836010602
+Pooled,drop COVID year,no controls,ihs_fdi,Jharkhand,35,-0.18842529987426743,2.663990919637982e-06
+Pooled,drop COVID year,no controls,log_fdi,Jharkhand,35,-0.1884251735576573,2.663665811919458e-06
+Pooled,keep COVID year,Census controls,log_fdi,Gujarat,43,-0.18722310004169437,0.018460684784540993
+Pooled,keep COVID year,Census controls,ihs_fdi,Gujarat,43,-0.1872224103267448,0.01845887142481195
+Pooled,keep COVID year,no controls,ihs_fdi,Jharkhand,43,-0.18666867786652092,6.73521882710304e-09
+Pooled,keep COVID year,no controls,log_fdi,Jharkhand,43,-0.1866682269214655,6.734985458223264e-09
+Pooled,keep COVID year,Census controls,log_fdi,Uttar Pradesh,45,-0.18060351497765115,0.016264501550845356
+Pooled,keep COVID year,Census controls,ihs_fdi,Uttar Pradesh,45,-0.180602770010062,0.016263092918191946
+Pooled,drop COVID year,Census controls,log_fdi,Uttar Pradesh,36,-0.18045110001911358,0.04963082513457584
+Pooled,drop COVID year,Census controls,ihs_fdi,Uttar Pradesh,36,-0.18045015038075385,0.0496289804196719
+Pooled,keep COVID year,Census controls,log_fdi,West Bengal,43,-0.17909582761114312,0.0506071171627025
+Pooled,keep COVID year,Census controls,ihs_fdi,West Bengal,43,-0.17909508955532905,0.05060298297201049
+Pooled,keep COVID year,Census controls,log_fdi,none,48,-0.17601768049983357,0.007082838877932041
+Pooled,keep COVID year,Census controls,ihs_fdi,none,48,-0.17601748663690278,0.007081930874453857
+Pooled,drop COVID year,Census controls,log_fdi,none,39,-0.17411684139240066,0.028063089409859687
+Pooled,drop COVID year,Census controls,ihs_fdi,none,39,-0.17411657619078283,0.028061206290947105
+Pooled,drop COVID year,Census controls,log_fdi,West Bengal,35,-0.1738651830530699,0.08133481410163701
+Pooled,drop COVID year,Census controls,ihs_fdi,West Bengal,35,-0.1738649001629201,0.08133018576932427
+Pooled,keep COVID year,Census controls,ihs_fdi,Jharkhand,43,-0.14570504104246484,0.0002661450738106197
+Pooled,keep COVID year,Census controls,log_fdi,Jharkhand,43,-0.14570434317778533,0.000266137800215116
+Pooled,drop COVID year,Census controls,ihs_fdi,Jharkhand,35,-0.14473548551019677,0.006364931623781933
+Pooled,drop COVID year,Census controls,log_fdi,Jharkhand,35,-0.14473451061060288,0.006364975092473912
+Pooled,drop COVID year,Census controls,ihs_fdi,Tamil Nadu,35,-0.13850857605234773,0.053970022703578424
+Pooled,drop COVID year,Census controls,log_fdi,Tamil Nadu,35,-0.13850751625889976,0.05397587941722004
+Pooled,keep COVID year,Census controls,ihs_fdi,Tamil Nadu,43,-0.138207665928631,0.013128599294804921
+Pooled,keep COVID year,Census controls,log_fdi,Tamil Nadu,43,-0.13820655192805145,0.013131022290640892
+Pooled,keep COVID year,Census controls,ihs_fdi,Karnataka,43,-0.10917567578661733,0.06063961708446608
+Pooled,keep COVID year,Census controls,log_fdi,Karnataka,43,-0.10917521052242517,0.06064531071817214
+Pooled,drop COVID year,Census controls,log_fdi,Karnataka,35,-0.08662672886185899,0.1920785022464777
+Pooled,drop COVID year,Census controls,ihs_fdi,Karnataka,35,-0.08662662738239532,0.19206785928876124
+FE,drop COVID year,no controls,ihs_fdi,Jharkhand,35,0.12837943157466603,0.07995183938165007
+FE,drop COVID year,no controls,log_fdi,Jharkhand,35,0.12837977475079743,0.0799512516076879
+FE,keep COVID year,no controls,ihs_fdi,Jharkhand,43,0.18203733556215945,0.0060719972487237595
+FE,keep COVID year,no controls,log_fdi,Jharkhand,43,0.18203878425911338,0.006071979783033754
+FE,drop COVID year,no controls,ihs_fdi,Haryana,35,0.2911748950066279,0.0315847495706838
+FE,drop COVID year,no controls,log_fdi,Haryana,35,0.29117736129185273,0.03158647161885608
+FE,drop COVID year,no controls,ihs_fdi,Karnataka,35,0.31558439756013984,0.042549812029060385
+FE,drop COVID year,no controls,log_fdi,Karnataka,35,0.315587603309615,0.0425516781853037
+FE,drop COVID year,no controls,ihs_fdi,none,39,0.32370355034035014,0.027215469056953046
+FE,drop COVID year,no controls,log_fdi,none,39,0.3237069824904098,0.027216836436192438
+FE,drop COVID year,no controls,ihs_fdi,Maharashtra,35,0.32421037223706856,0.02889675371776801
+FE,drop COVID year,no controls,log_fdi,Maharashtra,35,0.3242131950803747,0.028898462628040633
+FE,keep COVID year,no controls,ihs_fdi,Haryana,43,0.32467756870862013,0.0002415034880316469
+FE,keep COVID year,no controls,log_fdi,Haryana,43,0.32467866413764124,0.0002415135424398418
+FE,drop COVID year,no controls,ihs_fdi,West Bengal,35,0.32539310321122294,0.041485787860193746
+FE,drop COVID year,no controls,log_fdi,West Bengal,35,0.3253968476859442,0.041487292547670584
+FE,drop COVID year,no controls,ihs_fdi,Uttar Pradesh,36,0.3268139775141063,0.02082410089057185
+FE,drop COVID year,no controls,log_fdi,Uttar Pradesh,36,0.32681618177836663,0.020825957126113792
+FE,drop COVID year,no controls,ihs_fdi,Rajasthan,35,0.3276651778658754,0.009326243987256788
+FE,drop COVID year,no controls,log_fdi,Rajasthan,35,0.32766760032928777,0.00932718457227022
+FE,keep COVID year,no controls,ihs_fdi,Telangana,43,0.3374613731829127,8.223793747652586e-05
+FE,keep COVID year,no controls,log_fdi,Telangana,43,0.3374624754412369,8.224253595634501e-05
+FE,keep COVID year,no controls,ihs_fdi,Rajasthan,43,0.33936186726392187,5.893893479091972e-05
+FE,keep COVID year,no controls,log_fdi,Rajasthan,43,0.3393632553286796,5.894738280964873e-05
+FE,keep COVID year,no controls,ihs_fdi,Karnataka,43,0.34880180988694903,0.000799785649526763
+FE,keep COVID year,no controls,log_fdi,Karnataka,43,0.34880417337377195,0.000799786547383885
+FE,drop COVID year,no controls,ihs_fdi,Telangana,35,0.3497840834180331,0.03374387070688112
+FE,drop COVID year,no controls,log_fdi,Telangana,35,0.3497871949877104,0.033746089368411614
+FE,keep COVID year,no controls,ihs_fdi,none,48,0.35328941097986916,0.00018986650746888323
+FE,keep COVID year,no controls,log_fdi,none,48,0.35329128712708596,0.00018986978547408384
+FE,keep COVID year,no controls,ihs_fdi,West Bengal,43,0.35351210950813833,0.0003381832908633253
+FE,keep COVID year,no controls,log_fdi,West Bengal,43,0.3535136683347701,0.00033819795553524656
+FE,keep COVID year,no controls,ihs_fdi,Maharashtra,43,0.3549012938759766,0.00019405270532013574
+FE,keep COVID year,no controls,log_fdi,Maharashtra,43,0.35490262502146436,0.00019405985167852968
+FE,keep COVID year,no controls,ihs_fdi,Uttar Pradesh,45,0.3661929796851423,0.0001435830537195315
+FE,keep COVID year,no controls,log_fdi,Uttar Pradesh,45,0.3661940109127543,0.00014359701833921434
+FE,drop COVID year,no controls,ihs_fdi,Gujarat,35,0.38580232745519516,0.008648075851657167
+FE,drop COVID year,no controls,log_fdi,Gujarat,35,0.3858071726499112,0.008648650767277832
+FE,keep COVID year,no controls,ihs_fdi,Gujarat,43,0.4000354900553602,0.0001571959926585098
+FE,keep COVID year,no controls,log_fdi,Gujarat,43,0.4000382287258486,0.00015719962365490225
+FE,drop COVID year,no controls,ihs_fdi,Tamil Nadu,35,0.4162633526895851,0.03625415207606286
+FE,drop COVID year,no controls,log_fdi,Tamil Nadu,35,0.4162719755133659,0.03625219558515047
+FE,keep COVID year,no controls,ihs_fdi,Tamil Nadu,43,0.41728930642610434,7.586872964271407e-05
+FE,keep COVID year,no controls,log_fdi,Tamil Nadu,43,0.41729272008641305,7.585755942729477e-05

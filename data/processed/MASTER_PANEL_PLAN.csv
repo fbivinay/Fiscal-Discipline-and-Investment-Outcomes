@@ -1,0 +1,33 @@
+column,meaning (simple words),unit,source,why it is needed
+state,State name,text,-,Panel identifier
+year,"Fiscal year, FY2019-20 to FY2023-24",text,-,Panel identifier
+year_num (2019 = FY2019-20),"Same year as a number, for sorting and panel indexing in Python",integer,-,Needed to set the panel index for regression
+fiscal_deficit (% of GSDP),"How much more the state spent than it earned, relative to its economy size. Lower = better discipline",% of GSDP,FC-16 Report Vol II Annexure 5.1 (CAG-audited actuals),Independent variable 1 - use THIS in regression
+fiscal_deficit_amount (Rupees crore),The same deficit in actual rupees,Rupees crore,Computed: % x GSDP / 100,For descriptive tables and charts only
+debt (% of GSDP),"Total loans the state owes, relative to economy size. Lower = better",% of GSDP,FC-16 Annexure 5.3 (audited actuals),Independent variable 2 - use in regression
+debt_amount (Rupees crore),The same debt in actual rupees,Rupees crore,Computed: % x GSDP / 100,Descriptive use only
+own_tax_revenue (% of GSDP),"Taxes the state collects on its own (not from Delhi), relative to economy. Higher = better",% of GSDP,FC-16 Annexure 5.5 (audited actuals),Independent variable 3 - use in regression
+own_tax_revenue_amount (Rupees crore),The same tax collection in actual rupees,Rupees crore,Computed: % x GSDP / 100,Descriptive use only
+capex_derived (% of GSDP),"Spending on building assets (roads, hospitals) incl. net lending, relative to economy. Higher = better. Derived = fiscal deficit minus revenue deficit",% of GSDP,Derived from FC-16 Annexures 5.1 - 5.2,Independent variable 4 - use in regression
+capex_derived_amount (Rupees crore),The same capital spending in actual rupees,Rupees crore,Computed: % x GSDP / 100,Descriptive use only
+revenue_deficit (% of GSDP),Gap between everyday income and everyday spending. NEGATIVE value = SURPLUS (good),% of GSDP,FC-16 Annexure 5.2 (audited actuals),Bonus variable - background and discussion
+revenue_deficit_amount (Rupees crore),The same in actual rupees (negative = surplus amount),Rupees crore,Computed: % x GSDP / 100,Descriptive use only
+fdi (Rupees crore),"Foreign investment the state received that year. BLANK for UP in FY2019-20 and FY2020-21 (DPIIT did not record it - blank means not recorded, NOT zero)",Rupees crore,"DPIIT FDI Factsheets, Table F",DEPENDENT variable 1 (raw form)
+gsdp (Rupees crore),"Total size of the state's economy that year, current prices",Rupees crore,MoSPI State Domestic Product series,"Base for growth, logs, and all % ratios"
+gsdp_growth (% per year),How much the economy grew over the previous year (nominal). FY2019-20 growth uses the FY2018-19 base already built in,% per year,Computed from MoSPI GSDP incl. 2018-19,DEPENDENT variable 2 - use in Model 2
+"log_fdi (natural log, unitless)",Natural logarithm of FDI. Compresses the 1000x gap between Maharashtra and Jharkhand so regression treats states fairly; makes coefficients read as % effects,unitless,Computed: ln(fdi),DEPENDENT variable 1 (regression form) - use in Model 1
+"log_gsdp (natural log, unitless)",Natural logarithm of GSDP - same scale fix for economy size,unitless,Computed: ln(gsdp),Optional size control in pooled model
+"covid_dummy (1 = FY2020-21, else 0)",Flags the pandemic year when all deficits jumped for reasons unrelated to discipline,0 or 1,Constructed,Control - protects fiscal coefficients from the COVID shock
+"post_covid_dummy (1 = FY2021-22 onwards, else 0)",Flags the recovery era,0 or 1,Constructed,Optional - to test if relationships changed after COVID
+"literacy (%, Census 2011)",Share of people who can read and write (last census; fixed over time),%,Census of India 2011,Control in the pooled OLS robustness check
+"urbanization (%, Census 2011)",Share of people living in cities (fixed over time),%,Census of India 2011,Control in the pooled OLS robustness check
+discipline_rank_in_year (1 = most disciplined that year),"The state's position among the 10 states in THAT year, combining all 4 fiscal measures",rank 1-10,Computed from the 4 fiscal variables,"For rankings, Spearman correlation, and year-wise comparison charts"
+,,,,
+HOW THE FILE MAPS TO YOUR RESEARCH STEPS,,,,
+Step 1 (charts + descriptive stats),"Use % columns for comparisons, amount columns for scale illustrations",,,
+Step 2 (rankings + Spearman),Use discipline_rank_in_year vs FDI ranks,,,
+Step 3 Model 1 (FDI regression),log_fdi ~ fiscal_deficit + debt + own_tax_revenue + capex_derived + covid_dummy + state fixed effects,,,
+Step 3 Model 2 (growth regression),gsdp_growth ~ same regressors,,,
+Step 5 (robustness),Drop covid rows / drop Jharkhand / drop UP using simple filters; add literacy + urbanization in pooled OLS,,,
+,,,,
+QUICK UNIT RULE,Small values (0-45) = % of GSDP. Large values = Rupees crore. Ranks = positions 1-10. Dummies = 0/1. Logs = unitless.,,,

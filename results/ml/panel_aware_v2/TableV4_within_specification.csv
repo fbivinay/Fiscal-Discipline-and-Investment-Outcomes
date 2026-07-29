@@ -1,0 +1,6 @@
+Variable,WITHIN_LASSO_coef,WITHIN_mean_abs_SHAP,POOLED_mean_abs_SHAP
+Debt-to-GSDP,0.4411,0.2743,1.0287
+Fiscal Deficit,0.2476,0.1191,0.2185
+Own Tax Revenue,0.0,0.0371,0.2081
+Capital Expenditure,0.0,0.031,0.136
+COVID year,-0.2222,0.0007,0.0068

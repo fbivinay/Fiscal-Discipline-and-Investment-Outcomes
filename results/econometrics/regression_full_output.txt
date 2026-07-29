@@ -1,0 +1,151 @@
+======================================================================
+MODEL 1: log(FDI) — FIXED EFFECTS, DRISCOLL-KRAAY SEs  (n=48)
+======================================================================
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:                log_fdi   R-squared:                        0.4292
+Estimator:                   PanelOLS   R-squared (Between):             -4.4871
+No. Observations:                  48   R-squared (Within):               0.4292
+Date:                Wed, Jul 15 2026   R-squared (Overall):             -3.3481
+Time:                        04:44:26   Log-likelihood                   -51.975
+Cov. Estimator:        Driscoll-Kraay                                           
+                                        F-statistic:                      4.9623
+Entities:                          10   P-value                           0.0017
+Avg Obs:                       4.8000   Distribution:                    F(5,33)
+Min Obs:                       3.0000                                           
+Max Obs:                       5.0000   F-statistic (robust):         -2.408e+13
+                                        P-value                           1.0000
+Time periods:                       5   Distribution:                    F(5,33)
+Avg Obs:                       9.6000                                           
+Min Obs:                       9.0000                                           
+Max Obs:                      10.0000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+Intercept     -2.6202     0.9754    -2.6864     0.0112     -4.6047     -0.6358
+fd             0.5660     0.0994     5.6926     0.0000      0.3637      0.7683
+debt           0.3533     0.0422     8.3728     0.0000      0.2674      0.4391
+otr            0.1068     0.2600     0.4108     0.6838     -0.4222      0.6358
+capex         -0.1730     0.3021    -0.5725     0.5709     -0.7877      0.4418
+covid         -1.4059     0.2373    -5.9246     0.0000     -1.8887     -0.9231
+==============================================================================
+
+F-test for Poolability: 6.7414
+P-value: 0.0000
+Distribution: F(9,33)
+
+Included effects: Entity
+
+======================================================================
+MODEL 1: log(FDI) — POOLED OLS + CENSUS CONTROLS
+======================================================================
+                          PooledOLS Estimation Summary                          
+================================================================================
+Dep. Variable:                log_fdi   R-squared:                        0.6429
+Estimator:                  PooledOLS   R-squared (Between):              0.8744
+No. Observations:                  48   R-squared (Within):              -0.0493
+Date:                Wed, Jul 15 2026   R-squared (Overall):              0.6429
+Time:                        04:44:26   Log-likelihood                   -74.170
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      10.287
+Entities:                          10   P-value                           0.0000
+Avg Obs:                       4.8000   Distribution:                    F(7,40)
+Min Obs:                       3.0000                                           
+Max Obs:                       5.0000   F-statistic (robust):             58.757
+                                        P-value                           0.0000
+Time periods:                       5   Distribution:                    F(7,40)
+Avg Obs:                       9.6000                                           
+Min Obs:                       9.0000                                           
+Max Obs:                      10.0000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+Intercept      3.6472     4.5738     0.7974     0.4299     -5.5968      12.891
+fd             0.5665     0.5011     1.1304     0.2650     -0.4463      1.5793
+debt          -0.1760     0.0620    -2.8388     0.0071     -0.3013     -0.0507
+otr            0.3251     0.2893     1.1237     0.2678     -0.2596      0.9097
+capex         -0.3659     0.1316    -2.7796     0.0083     -0.6320     -0.0999
+covid          0.5467     0.3829     1.4281     0.1610     -0.2270      1.3205
+literacy       0.1006     0.0461     2.1804     0.0352      0.0074      0.1939
+urban          0.0047     0.0410     0.1146     0.9093     -0.0782      0.0876
+==============================================================================
+
+======================================================================
+MODEL 2: GSDP GROWTH — FIXED EFFECTS, DRISCOLL-KRAAY SEs  (n=50)
+======================================================================
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:                 growth   R-squared:                        0.6893
+Estimator:                   PanelOLS   R-squared (Between):             -32.367
+No. Observations:                  50   R-squared (Within):               0.6893
+Date:                Wed, Jul 15 2026   R-squared (Overall):              0.1206
+Time:                        04:44:26   Log-likelihood                   -140.53
+Cov. Estimator:        Driscoll-Kraay                                           
+                                        F-statistic:                      15.529
+Entities:                          10   P-value                           0.0000
+Avg Obs:                       5.0000   Distribution:                    F(5,35)
+Min Obs:                       5.0000                                           
+Max Obs:                       5.0000   F-statistic (robust):         -3.629e+11
+                                        P-value                           1.0000
+Time periods:                       5   Distribution:                    F(5,35)
+Avg Obs:                      10.0000                                           
+Min Obs:                      10.0000                                           
+Max Obs:                      10.0000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+Intercept     -37.934     21.148    -1.7937     0.0815     -80.866      4.9990
+fd            -2.1719     0.9663    -2.2477     0.0310     -4.1335     -0.2103
+debt           1.0967     0.4771     2.2984     0.0276      0.1280      2.0654
+otr            4.0830     2.4238     1.6845     0.1010     -0.8376      9.0035
+capex         -0.3560     1.2357    -0.2881     0.7750     -2.8647      2.1527
+covid         -13.783     3.1731    -4.3436     0.0001     -20.224     -7.3409
+==============================================================================
+
+F-test for Poolability: 0.8182
+P-value: 0.6033
+Distribution: F(9,35)
+
+Included effects: Entity
+
+======================================================================
+MODEL 2: GSDP GROWTH — POOLED OLS + CENSUS CONTROLS
+======================================================================
+                          PooledOLS Estimation Summary                          
+================================================================================
+Dep. Variable:                 growth   R-squared:                        0.6407
+Estimator:                  PooledOLS   R-squared (Between):             -0.4438
+No. Observations:                  50   R-squared (Within):               0.6597
+Date:                Wed, Jul 15 2026   R-squared (Overall):              0.6407
+Time:                        04:44:26   Log-likelihood                   -144.60
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      10.700
+Entities:                          10   P-value                           0.0000
+Avg Obs:                       5.0000   Distribution:                    F(7,42)
+Min Obs:                       5.0000                                           
+Max Obs:                       5.0000   F-statistic (robust):             72.447
+                                        P-value                           0.0000
+Time periods:                       5   Distribution:                    F(7,42)
+Avg Obs:                      10.0000                                           
+Min Obs:                      10.0000                                           
+Max Obs:                      10.0000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+Intercept      5.3667     11.946     0.4493     0.6556     -18.741      29.474
+fd            -1.4353     1.4861    -0.9658     0.3397     -4.4344      1.5638
+debt           0.2579     0.2196     1.1744     0.2468     -0.1853      0.7011
+otr            1.6267     0.8780     1.8528     0.0709     -0.1451      3.3985
+capex         -0.3226     0.9018    -0.3578     0.7223     -2.1425      1.4972
+covid         -12.662     1.5744    -8.0427     0.0000     -15.840     -9.4851
+literacy      -0.1720     0.1911    -0.9004     0.3730     -0.5576      0.2135
+urban          0.1994     0.1355     1.4710     0.1487     -0.0741      0.4729
+==============================================================================

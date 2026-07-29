@@ -1,0 +1,4 @@
+Model,LOO-CV out-of-sample R2
+OLS (all 7 predictors),0.473
+LASSO (selected subset),0.488
+Random Forest,0.587

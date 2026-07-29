@@ -1,0 +1,6 @@
+Variable,LASSO_coef (standardized),LASSO_selected,ElasticNet_coef,ElasticNet_selected
+Debt-to-GSDP,-1.5712,YES,-1.4782,YES
+Fiscal Deficit,0.728,YES,0.6523,YES
+Capital Expenditure,-0.697,YES,-0.6788,YES
+COVID year,0.22,YES,0.2252,YES
+Own Tax Revenue,0.1572,YES,0.1736,YES

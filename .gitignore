@@ -1,0 +1,19 @@
+# Third-party Overleaf source clone — not part of this research, 324 MB
+overleaf/
+
+# Similarity and AI-detection reports on the manuscript: internal QA, not published
+plagiarish and ai/
+
+# Superseded drafts of the manuscript (the current version lives in paper/)
+/Fiscal_Discipline_FDI_Paper_REVISED*.docx
+/Research_Plan_COMPLETE*.docx
+
+# Word lock files
+~$*
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/

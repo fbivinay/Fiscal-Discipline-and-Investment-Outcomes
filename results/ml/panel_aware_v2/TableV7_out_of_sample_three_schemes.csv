@@ -1,0 +1,5 @@
+Model,Row-wise LOO (leaky),Leave-one-STATE-out,Forward-chaining by year
+OLS (5 predictors),0.44,0.163,0.269
+LASSO,0.416,0.235,0.257
+Random Forest,0.395,0.085,0.235
+Gradient Boosting,0.509,0.112,0.241
