@@ -1,0 +1,34 @@
+==========================================================================
+1. SHAP PERMUTATION NULL, state-block permutation (paper used row-wise)
+==========================================================================
+   observed top-to-second gap = 0.8102
+   P(debt ranks first | state blocks permuted) = 0.412   (row-wise gave 0.285)
+   P(gap >= observed  | state blocks permuted) = 0.030   (row-wise gave 0.004)
+   states permuted: 9 full blocks; ['Uttar Pradesh'] held fixed (3 obs)
+
+==========================================================================
+2. MUNDLAK within==between, wild cluster bootstrap (paper reported cluster t)
+==========================================================================
+   observed t = 4.6472   cluster-robust p = 0.00000336
+   wild cluster bootstrap p (2000 draws, null imposed) = 0.0170
+
+==========================================================================
+3. ML BRANCH WITH literacy+urbanisation, under STATE-BLOCKED CV
+   (the original 7-var run used row-wise CV, which is the leaky scheme)
+==========================================================================
+   LASSO alpha = 0.0582
+      Debt-to-GSDP         -0.9298
+      Fiscal Deficit       +0.4989
+      Literacy             +0.4855
+      Urbanisation         +0.2513
+      Capital Expenditure  -0.2488
+      Own Tax Revenue      +0.1685
+      COVID year           +0.1579
+   forest out-of-bag R2 = 0.5972
+      SHAP Urbanisation     1.2959
+      SHAP Debt-to-GSDP     0.2536
+      SHAP Fiscal Deficit   0.1805
+      SHAP Capital Expenditure 0.0216
+      SHAP Own Tax Revenue  0.0158
+      SHAP Literacy         0.0115
+      SHAP COVID year       0.0000

@@ -93,7 +93,7 @@ for i,f in enumerate(FEATURES):
 ax.axvline(np.log10(lasso.alpha_), ls="--", c="k", lw=1, label=f"Chosen alpha (LOO-CV)")
 ax.set_xlabel("log10(regularization strength alpha)  ->  stronger shrinkage")
 ax.set_ylabel("Standardized coefficient")
-ax.set_title("Figure M1: LASSO Coefficient Paths — which predictors survive shrinkage?")
+ax.set_title("LASSO Coefficient Paths — which predictors survive shrinkage?")
 ax.legend(fontsize=8); ax.grid(alpha=.3)
 fig.tight_layout(); fig.savefig(f"{OUT}/FigM1_lasso_path.png", bbox_inches="tight"); plt.close(fig)
 
@@ -104,7 +104,7 @@ cols = ["seagreen" if c>0 else "firebrick" for c in lasso.coef_[order]]
 ax.barh([NICE[FEATURES[i]] for i in order], lasso.coef_[order], color=cols)
 ax.axvline(0, c="k", lw=.8)
 ax.set_xlabel("LASSO coefficient (standardized; 0 = eliminated)")
-ax.set_title("Figure M2: LASSO — surviving predictors of log(FDI)")
+ax.set_title("LASSO — surviving predictors of log(FDI)")
 ax.grid(axis="x", alpha=.3)
 fig.tight_layout(); fig.savefig(f"{OUT}/FigM2_lasso_coefs.png", bbox_inches="tight"); plt.close(fig)
 
@@ -127,19 +127,19 @@ print(meanabs.to_string(index=False))
 Xdf = pd.DataFrame(X_raw, columns=[NICE[f] for f in FEATURES])
 fig = plt.figure(figsize=(8,5))
 shap.summary_plot(sv, Xdf, show=False, plot_size=None)
-plt.title("Figure M3: SHAP Summary — direction & strength of each predictor", fontweight="bold", fontsize=10)
+plt.title("SHAP Summary — direction & strength of each predictor", fontweight="bold", fontsize=10)
 plt.tight_layout(); plt.savefig(f"{OUT}/FigM3_shap_beeswarm.png", bbox_inches="tight", dpi=150); plt.close()
 
 # --- Figure M4: SHAP bar -----------------------------------------------------
 fig = plt.figure(figsize=(7.5,4.5))
 shap.summary_plot(sv, Xdf, plot_type="bar", show=False, plot_size=None)
-plt.title("Figure M4: SHAP Importance Ranking (mean |SHAP value|)", fontweight="bold", fontsize=10)
+plt.title("SHAP Importance Ranking (mean |SHAP value|)", fontweight="bold", fontsize=10)
 plt.tight_layout(); plt.savefig(f"{OUT}/FigM4_shap_bar.png", bbox_inches="tight", dpi=150); plt.close()
 
 # --- Figure M5: SHAP dependence for the top fiscal variable (debt) ----------
 fig = plt.figure(figsize=(7.5,5))
 shap.dependence_plot("Debt-to-GSDP", sv, Xdf, interaction_index=None, show=False)
-plt.title("Figure M5: SHAP Dependence — Debt-to-GSDP vs its effect on predicted log(FDI)",
+plt.title("SHAP Dependence — Debt-to-GSDP vs its effect on predicted log(FDI)",
           fontweight="bold", fontsize=10)
 plt.tight_layout(); plt.savefig(f"{OUT}/FigM5_shap_dependence_debt.png", bbox_inches="tight", dpi=150); plt.close()
 
