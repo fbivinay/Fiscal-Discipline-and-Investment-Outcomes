@@ -59,6 +59,8 @@ code/
                               specification, permutation null, stability selection
   specification_tests.py      Estimator choice, error structure, functional form,
                               specification curve, wild cluster bootstrap
+  reconstruct_from_paper.py   Rebuilds the panel from the manuscript's own
+                              published tables and re-derives the results
 
 results/
   econometrics/               Tables 1-6, Figures 1-10, full regression output
@@ -85,7 +87,32 @@ python code/analysis.py                  # econometrics
 python code/ml_validation_corrected.py   # ML validation as reported
 python code/ml_validation_v2.py          # panel-aware extensions
 python code/specification_tests.py       # diagnostics + specification curve
+python code/reconstruct_from_paper.py    # reproducibility check, see below
 ```
+
+## Reproducing the paper without trusting this repository
+
+`reconstruct_from_paper.py` answers a sharper question than "do the scripts
+run?". It opens only `paper/Fiscal_Discipline_and_Investment_Outcomes.docx`,
+parses the eight input tables printed in Section 4, rebuilds the fifty-row
+panel from them, re-estimates the models and compares the output against the
+figures printed in Sections 6 and 7. It never reads
+`data/processed/MASTER_PANEL_DATASET.csv`.
+
+It passes: the descriptive statistics of Table 17, every coefficient in
+Tables 19 and 20, the variance inflation factors of Table 21, and the Mundlak
+and between-estimator coefficients of Table 35 are all recovered to the
+precision at which they are published. A reader with the manuscript alone can
+therefore reproduce every headline estimate, and no intermediate file in this
+repository has to be taken on trust.
+
+One detail is worth stating because it is a real limit rather than a rounding
+convenience. GSDP growth is read from Table 13 rather than recomputed from the
+GSDP levels in Table 12. The published growth series is rounded to two decimals
+and Model 2 is estimated on those rounded values, so recomputing at full
+precision shifts the Model 2 coefficients in the fourth decimal. The script
+performs that recomputation anyway as a cross-check and reports the divergence
+between the two published series, which is 0.005 percentage points.
 
 The two scripts with non-trivial logic carry a self-check:
 
