@@ -161,8 +161,11 @@ print("\n=== TABLE M4: OUT-OF-SAMPLE (LOO-CV) R-SQUARED ===")
 print(tabC.to_string(index=False))
 
 # ---------------------------------------------------------- summary --------
+# Written to ML_RUN_LOG.txt, not ML_FINDINGS_SUMMARY.txt: the latter is a
+# hand-maintained write-up of this run and is not reproducible from this
+# script, so re-running must not overwrite it.
 top_lasso = tabA.iloc[0]["Variable"]; top_shap = meanabs.iloc[0]["Variable"]
-with open(f"{OUT}/ML_FINDINGS_SUMMARY.txt","w") as f:
+with open(f"{OUT}/ML_RUN_LOG.txt","w",encoding="utf-8") as f:
     f.write(f"""============================================================================
 MACHINE LEARNING VALIDATION — FINDINGS SUMMARY (plain language)
 ============================================================================

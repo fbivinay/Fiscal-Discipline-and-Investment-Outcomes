@@ -6,14 +6,14 @@ MODEL 1: log(FDI) — FIXED EFFECTS, DRISCOLL-KRAAY SEs  (n=48)
 Dep. Variable:                log_fdi   R-squared:                        0.4292
 Estimator:                   PanelOLS   R-squared (Between):             -4.4871
 No. Observations:                  48   R-squared (Within):               0.4292
-Date:                Wed, Jul 15 2026   R-squared (Overall):             -3.3481
-Time:                        04:44:26   Log-likelihood                   -51.975
+Date:                Tue, Aug 04 2026   R-squared (Overall):             -3.3481
+Time:                        12:20:03   Log-likelihood                   -51.975
 Cov. Estimator:        Driscoll-Kraay                                           
                                         F-statistic:                      4.9623
 Entities:                          10   P-value                           0.0017
 Avg Obs:                       4.8000   Distribution:                    F(5,33)
 Min Obs:                       3.0000                                           
-Max Obs:                       5.0000   F-statistic (robust):         -2.408e+13
+Max Obs:                       5.0000   F-statistic (robust):         -7.843e+13
                                         P-value                           1.0000
 Time periods:                       5   Distribution:                    F(5,33)
 Avg Obs:                       9.6000                                           
@@ -46,8 +46,8 @@ MODEL 1: log(FDI) — POOLED OLS + CENSUS CONTROLS
 Dep. Variable:                log_fdi   R-squared:                        0.6429
 Estimator:                  PooledOLS   R-squared (Between):              0.8744
 No. Observations:                  48   R-squared (Within):              -0.0493
-Date:                Wed, Jul 15 2026   R-squared (Overall):              0.6429
-Time:                        04:44:26   Log-likelihood                   -74.170
+Date:                Tue, Aug 04 2026   R-squared (Overall):              0.6429
+Time:                        12:20:03   Log-likelihood                   -74.170
 Cov. Estimator:             Clustered                                           
                                         F-statistic:                      10.287
 Entities:                          10   P-value                           0.0000
@@ -82,15 +82,15 @@ MODEL 2: GSDP GROWTH — FIXED EFFECTS, DRISCOLL-KRAAY SEs  (n=50)
 Dep. Variable:                 growth   R-squared:                        0.6893
 Estimator:                   PanelOLS   R-squared (Between):             -32.367
 No. Observations:                  50   R-squared (Within):               0.6893
-Date:                Wed, Jul 15 2026   R-squared (Overall):              0.1206
-Time:                        04:44:26   Log-likelihood                   -140.53
+Date:                Tue, Aug 04 2026   R-squared (Overall):              0.1206
+Time:                        12:20:03   Log-likelihood                   -140.53
 Cov. Estimator:        Driscoll-Kraay                                           
                                         F-statistic:                      15.529
 Entities:                          10   P-value                           0.0000
 Avg Obs:                       5.0000   Distribution:                    F(5,35)
 Min Obs:                       5.0000                                           
-Max Obs:                       5.0000   F-statistic (robust):         -3.629e+11
-                                        P-value                           1.0000
+Max Obs:                       5.0000   F-statistic (robust):          2.033e+12
+                                        P-value                           0.0000
 Time periods:                       5   Distribution:                    F(5,35)
 Avg Obs:                      10.0000                                           
 Min Obs:                      10.0000                                           
@@ -122,8 +122,8 @@ MODEL 2: GSDP GROWTH — POOLED OLS + CENSUS CONTROLS
 Dep. Variable:                 growth   R-squared:                        0.6407
 Estimator:                  PooledOLS   R-squared (Between):             -0.4438
 No. Observations:                  50   R-squared (Within):               0.6597
-Date:                Wed, Jul 15 2026   R-squared (Overall):              0.6407
-Time:                        04:44:26   Log-likelihood                   -144.60
+Date:                Tue, Aug 04 2026   R-squared (Overall):              0.6407
+Time:                        12:20:03   Log-likelihood                   -144.60
 Cov. Estimator:             Clustered                                           
                                         F-statistic:                      10.700
 Entities:                          10   P-value                           0.0000
