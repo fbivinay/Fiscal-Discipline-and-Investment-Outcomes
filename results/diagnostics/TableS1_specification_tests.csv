@@ -6,10 +6,10 @@ A. Estimator,"Hausman FE vs RE [Model 2, GSDP growth]",6.3189,0.1766,RE not reje
 A. Estimator,"Breusch-Pagan LM, pooled vs RE [Model 2, GSDP growth]",2.5691,0.109,No panel effect detected,Unbalanced panel; LM uses the mean group size
 A. Estimator,"F-test for poolability, pooled vs FE [Model 2, GSDP growth]",0.8182,0.6033,"State effects NOT jointly significant — FE is a modelling choice, not a test result",
 B. Errors,"Pesaran CD, cross-sectional dependence [Model 1]",0.0187,0.9851,No dependence detected; DK is conservative rather than required,CD is asymptotic in N; N=10 gives it little power
-B. Errors,Wooldridge AR(1) in first differences [Model 1],-0.0506,0.8099,No AR(1) detected (rho=-0.051); -0.5 would mean no serial correlation,Asymptotic in T; T=5 gives two usable differences per state
+B. Errors,Wooldridge AR(1) in first differences [Model 1],-0.0506,0.0614,No AR(1) detected at 5% (rho=-0.051; H0: rho=-0.5),H0 is rho=-0.5; t uses G-1=9 df. Asymptotic in T; T=5 gives two usable differences per state
 B. Errors,"Modified Wald, groupwise heteroskedasticity [Model 1]",347.3273,0.0,Error variance differs by state — robust SEs justified,Each state contributes ~5 residuals; treat as indicative
 B. Errors,"Pesaran CD, cross-sectional dependence [Model 2]",8.3967,0.0,Cross-sectional dependence present — Driscoll-Kraay justified,CD is asymptotic in N; N=10 gives it little power
-B. Errors,Wooldridge AR(1) in first differences [Model 2],-0.092,0.5311,No AR(1) detected (rho=-0.092); -0.5 would mean no serial correlation,Asymptotic in T; T=5 gives two usable differences per state
+B. Errors,Wooldridge AR(1) in first differences [Model 2],-0.092,0.0214,Serial correlation present (rho=-0.092 differs from -0.5) — DK justified,H0 is rho=-0.5; t uses G-1=9 df. Asymptotic in T; T=5 gives two usable differences per state
 B. Errors,"Modified Wald, groupwise heteroskedasticity [Model 2]",184.5792,0.0,Error variance differs by state — robust SEs justified,Each state contributes ~5 residuals; treat as indicative
 C. Form,"Ramsey RESET, powers of fitted values",1.4545,0.2456,No evidence of misspecification,
 C. Form,"Within R-squared, dependent = log(FDI)",0.4292,,,"Not a test, a comparison"

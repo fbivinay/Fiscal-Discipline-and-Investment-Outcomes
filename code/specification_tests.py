@@ -174,11 +174,20 @@ def part_b(df, dep, label):
     sub = dd.dropna(subset=["d", "dlag"])
     ols = sm.OLS(sub["d"], sm.add_constant(sub["dlag"])).fit(
         cov_type="cluster", cov_kwds={"groups": sub["state"]})
-    rho, p_w = ols.params["dlag"], ols.pvalues["dlag"]
+    # Wooldridge/Drukker null is rho = -0.5, NOT rho = 0. Under no serial
+    # correlation in the levels error, first-differenced residuals are
+    # mechanically AR(1) with coefficient -0.5. Testing against 0 asks the
+    # wrong question and reads "no serial correlation" off the wrong tail.
+    rho, se = ols.params["dlag"], ols.bse["dlag"]
+    n_clust = sub["state"].nunique()
+    t_w = (rho + 0.5) / se
+    p_w = 2 * (1 - stats.t.cdf(abs(t_w), n_clust - 1))
     record("B. Errors", f"Wooldridge AR(1) in first differences [{label}]", rho, p_w,
-           "Serial correlation present — DK justified" if p_w < .05
-           else f"No AR(1) detected (rho={rho:.3f}); -0.5 would mean no serial correlation",
-           "Asymptotic in T; T=5 gives two usable differences per state")
+           f"Serial correlation present (rho={rho:.3f} differs from -0.5) — DK justified"
+           if p_w < .05
+           else f"No AR(1) detected at 5% (rho={rho:.3f}; H0: rho=-0.5)",
+           "H0 is rho=-0.5; t uses G-1=9 df. Asymptotic in T; T=5 gives two "
+           "usable differences per state")
 
     # Modified Wald for groupwise heteroskedasticity
     g = flat.groupby("state")["resid"]

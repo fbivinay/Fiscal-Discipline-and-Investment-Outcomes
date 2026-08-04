@@ -108,7 +108,10 @@ fig.tight_layout(); fig.savefig(f"{OUT}/Fig3_deficit_vs_fdi_scatter.png", bbox_i
 piv = df.pivot(index="state", columns="year", values="rank_in_year")
 piv = piv.loc[piv.mean(axis=1).sort_values().index]
 fig, ax = plt.subplots(figsize=(8, 5.5))
-sns.heatmap(piv, annot=True, fmt=".0f", cmap="RdYlGn_r", cbar_kws={"label":"Rank (1 = best)"},
+# Ties share a half-rank (Section 4.7), so "%g" is used rather than a fixed
+# decimal format: ".0f" would round 9.5 to 10 and hide the tie it represents.
+labels = np.array([[f"{v:g}" for v in row] for row in piv.values])
+sns.heatmap(piv, annot=labels, fmt="", cmap="RdYlGn_r", cbar_kws={"label":"Rank (1 = best)"},
             linewidths=.5, ax=ax, vmin=1, vmax=10)
 ax.set_title("Figure 4: Fiscal Discipline Rank by Year (1 = most disciplined)")
 ax.set_xlabel(""); ax.set_ylabel("")
@@ -193,7 +196,7 @@ t3.to_csv(f"{OUT}/Table3_Model1_FDI_regressions.csv")
 t4 = pd.concat([tidy(fe2,"FE + Driscoll-Kraay"), tidy(po2,"Pooled OLS + controls")], axis=1)
 t4.to_csv(f"{OUT}/Table4_Model2_growth_regressions.csv")
 
-with open(f"{OUT}/regression_full_output.txt","w") as f:
+with open(f"{OUT}/regression_full_output.txt","w",encoding="utf-8") as f:
     f.write("="*70+"\nMODEL 1: log(FDI) — FIXED EFFECTS, DRISCOLL-KRAAY SEs"
             f"  (n={n1})\n"+"="*70+"\n"+str(fe1)+"\n\n")
     f.write("="*70+"\nMODEL 1: log(FDI) — POOLED OLS + CENSUS CONTROLS\n"+"="*70+"\n"+str(po1)+"\n\n")

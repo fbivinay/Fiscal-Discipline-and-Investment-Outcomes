@@ -146,7 +146,7 @@ fig.tight_layout(); fig.savefig(f"{OUT}/FigM2_lasso_coefs_corrected.png",
 # memorise individual states rather than learn a fiscal relationship.
 rf = RandomForestRegressor(n_estimators=1000, max_depth=3, min_samples_leaf=4,
                            oob_score=True, random_state=RNG).fit(X_raw, y)
-with open(f"{OUT}/oob_r2.txt", "w") as f:
+with open(f"{OUT}/oob_r2.txt", "w", encoding="utf-8") as f:
     f.write(f"RF OOB R2 (5-var restricted model): {rf.oob_score_:.4f}\n")
 print(f"\nRF out-of-bag R2 (5-var restricted model): {rf.oob_score_:.4f}")
 
