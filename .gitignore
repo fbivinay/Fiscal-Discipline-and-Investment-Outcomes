@@ -20,3 +20,10 @@ venv/
 
 # Advisor feedback on the manuscript: private correspondence, not published
 /Suggestions and Recommendations.pdf
+
+# LaTeX build artefacts — main.tex is the source, the PDF is rebuilt from it
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.out
+paper/latex/*.pdf
+!paper/latex/figures/*.pdf

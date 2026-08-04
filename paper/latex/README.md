@@ -2,12 +2,31 @@
 
 ## How to compile
 
-1. Go to overleaf.com → **New Project → Upload Project**.
-2. Zip this whole `latex` folder (keep `figures/` inside it) and upload the zip.
-3. Overleaf picks `main.tex` as the root. Compiler: **pdfLaTeX**. Run it twice.
+Locally, with any TeX distribution on the path:
+
+```bash
+cd paper/latex
+pdflatex main.tex && pdflatex main.tex     # twice, for the cross-references
+```
+
+Or on Overleaf: **New Project → Upload Project**, zip this whole `latex` folder
+(keep `figures/` inside it), and let it pick `main.tex` as the root with
+**pdfLaTeX** as the compiler.
 
 No `.bib` file and no bibtex run is needed. The reference list is typeset directly
 as hanging-indent paragraphs, matching the APA formatting of the original document.
+
+### Last verified build
+
+Compiled with MiKTeX 25.12 (pdfTeX 4.23): **62 pages, no errors, no undefined
+references, no overfull boxes, no oversized floats.** All 39 tables number
+correctly, including the lettered 16a, 23a, 23b and 31a, and all 25 figures
+place where their captions sit.
+
+The architecture diagram is included at `0.99\textwidth` rather than the full
+width. It is drawn at exactly the text-block width, so at `\textwidth` the float
+plus its caption exceeded the page by 0.13 pt and LaTeX warned; the one per cent
+reduction clears that and is far too small to see.
 
 ## How the table and spacing problems are fixed
 
