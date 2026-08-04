@@ -54,9 +54,41 @@ be scaled and the type will shrink with it.
 
 | Path | What it is |
 |---|---|
-| `main.tex` | The whole paper: 8 sections, 20 subsections, 27 tables, 20 figures, 40 references |
-| `figures/fig01–fig10, fig12–fig20 .png` | The original charts, extracted from the DOCX |
+| `main.tex` | The whole paper: 8 sections plus a data-availability section, 22 subsections, 39 tables, 25 figures, 42 references |
+| `figures/fig01–fig10, fig12–fig25 .png` | The charts, extracted from the DOCX |
 | `figures/fig_architecture.pdf` | Figure 11, the full-page architecture diagram (vector) |
+
+## main.tex is generated, not hand-edited
+
+`main.tex` is regenerated from `paper/Fiscal_Discipline_and_Investment_Outcomes.docx`,
+which is the authoritative copy of the manuscript. The preamble above the
+`\begin{document}` line — geometry, float control, per-figure widths, caption
+skips — is preserved across regenerations; everything below it is rebuilt from
+the DOCX. **Edit the DOCX and regenerate**, or your changes will be overwritten
+the next time the two are synchronised.
+
+The figure widths are not arbitrary: each is `min(1.00, 3.7in / (6.47in * h/w))`
+so that no chart prints taller than 3.7 in, which is what lets two figures share
+a page.
+
+## Sub-lettered tables
+
+Four tables carry letters rather than plain numbers — 16a, 23a, 23b and 31a —
+because they were inserted after the surrounding tables were already numbered and
+cross-referenced in the text. LaTeX cannot produce that from its own counter, so
+each is wrapped in:
+
+```latex
+\addtocounter{table}{-1}\renewcommand{\thetable}{\arabic{table}a}
+\caption{...}
+\label{tab:16a}
+\renewcommand{\thetable}{\arabic{table}}
+```
+
+The counter is rolled back one, `\caption` advances it again and prints the
+lettered form, then the normal numbering is restored so the next table continues
+the sequence. Do not renumber these to close the gap: the DOCX and every in-text
+reference use the lettered form.
 
 ## Other conversion notes
 
