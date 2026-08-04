@@ -17,3 +17,6 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
+
+# Advisor feedback on the manuscript: private correspondence, not published
+/Suggestions and Recommendations.pdf

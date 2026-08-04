@@ -29,7 +29,7 @@ regressions at n = 48. It does not predict FDI.
 
 Run:  python ml_validation_v2.py
 Self-check:  python ml_validation_v2.py --selftest
-Outputs -> ./ml_results_v2/
+Outputs -> ./results/ml/panel_aware_v2/
 ============================================================================
 """
 import os

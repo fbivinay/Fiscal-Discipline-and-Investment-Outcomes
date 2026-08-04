@@ -14,8 +14,9 @@ the fixed effect through the back door rather than any fiscal relationship.
 The corrected specification below restricts every ML method to the same FIVE
 time-varying regressors the fixed-effects econometric model uses. Both runs
 are kept in the repository: ml_validation.py reproduces the flawed 7-variable
-outputs in ml_results/, this file reproduces the 5-variable outputs in
-ml_results/ml_results_corrected/ that Section 6.6 reports.
+outputs in results/ml/lasso_shap_original_7var/, this file reproduces the
+5-variable outputs in results/ml/lasso_shap_corrected_5var/ that Section 6.6
+reports.
 
   PART A  LASSO / Elastic Net  — regularized LINEAR variable selection
   PART B  Random Forest + SHAP — NON-LINEAR explainable-AI importance
@@ -27,7 +28,7 @@ panel-aware extensions (state-blocked CV, within specification,
 permutation null).
 
 Run:  python ml_validation_corrected.py
-Outputs -> ./ml_results/ml_results_corrected/
+Outputs -> ./results/ml/lasso_shap_corrected_5var/
 ============================================================================
 """
 import os

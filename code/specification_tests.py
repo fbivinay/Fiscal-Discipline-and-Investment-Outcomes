@@ -34,7 +34,7 @@ HONESTY NOTE
 
 Run:  python specification_tests.py
 Self-check:  python specification_tests.py --selftest
-Outputs -> ./spec_tests/
+Outputs -> ./results/diagnostics/
 ============================================================================
 """
 import itertools
