@@ -190,7 +190,7 @@ def part_b(X, y, d, alpha_cv):
     ax.axhline(0.8, ls=":", c="k", lw=1, label="0.8 selection threshold")
     ax.set_xlabel("log10(penalty alpha)  ->  stronger shrinkage")
     ax.set_ylabel(f"Selection probability across {N_STABILITY} state subsamples")
-    ax.set_title("Figure V1: Stability selection — how reliably each predictor survives")
+    ax.set_title("Stability selection — how reliably each predictor survives")
     ax.legend(fontsize=8); ax.grid(alpha=.3)
     fig.tight_layout(); fig.savefig(f"{OUT}/FigV1_stability_selection.png",
                                     bbox_inches="tight"); plt.close(fig)
@@ -228,7 +228,7 @@ def part_c(X_raw, y, d, pooled_shap):
     ax.barh(idx - w / 2, impw[o], w, label="Within (state-demeaned)", color="darkorange")
     ax.set_yticks(idx, [NICE[FEATURES[i]] for i in o])
     ax.set_xlabel("mean |SHAP|"); ax.legend(fontsize=8); ax.grid(axis="x", alpha=.3)
-    ax.set_title("Figure V2: SHAP importance, pooled vs within-state specification")
+    ax.set_title("SHAP importance, pooled vs within-state specification")
     fig.tight_layout(); fig.savefig(f"{OUT}/FigV2_within_vs_pooled.png",
                                     bbox_inches="tight"); plt.close(fig)
 
@@ -256,14 +256,28 @@ def part_d(X_raw, y, d):
 # =========================================================== PART E ==========
 # Permutation null — is the #1 SHAP rank distinguishable from chance at n=48?
 # ============================================================================
-def part_e(X_raw, y, obs_imp):
+def part_e(X_raw, y, obs_imp, groups):
+    # The null has to respect the same structure the cross-validation does.
+    # Permuting rows destroys the between-state persistence the real data carry,
+    # which makes the observed margin easier to beat and the p-value
+    # anti-conservative. Whole states therefore swap outcome blocks; the one
+    # state with fewer than five observations is held fixed so block lengths
+    # always match.
     obs_gap = np.sort(obs_imp)[-1] - np.sort(obs_imp)[-2]
     obs_top_is_key = int(np.argmax(obs_imp)) == FEATURES.index(KEY)
     key_first, gap_ge = 0, 0
     null_gaps = np.empty(N_PERM)
 
+    blocks = {s: np.where(groups == s)[0] for s in pd.unique(groups)}
+    sizes = {s: len(ix) for s, ix in blocks.items()}
+    common = max(set(sizes.values()), key=list(sizes.values()).count)
+    full = [s for s in blocks if sizes[s] == common]
+
     for b in range(N_PERM):
-        yp = rng.permutation(y)
+        yp = y.copy()
+        perm = rng.permutation(full)
+        for src, dst in zip(full, perm):
+            yp[blocks[dst]] = y[blocks[src]]
         _, _, imp = shap_importance(X_raw, yp, seed=RNG + b, n_trees=300)
         null_gaps[b] = np.sort(imp)[-1] - np.sort(imp)[-2]
         key_first += int(np.argmax(imp) == FEATURES.index(KEY))
@@ -274,8 +288,8 @@ def part_e(X_raw, y, obs_imp):
     tab = pd.DataFrame({
         "Quantity": ["Observed top variable",
                      "Observed top-to-second mean|SHAP| gap",
-                     f"P(debt ranks #1 | y permuted), {N_PERM} draws",
-                     f"P(gap >= observed | y permuted), {N_PERM} draws"],
+                     f"P(debt ranks #1 | states permuted), {N_PERM} draws",
+                     f"P(gap >= observed | states permuted), {N_PERM} draws"],
         "Value": [NICE[FEATURES[int(np.argmax(obs_imp))]], round(obs_gap, 4),
                   round(p_rank, 4), round(p_gap, 4)],
     })
@@ -288,9 +302,9 @@ def part_e(X_raw, y, obs_imp):
     fig, ax = plt.subplots(figsize=(8, 4.5))
     ax.hist(null_gaps, bins=35, color="lightsteelblue", edgecolor="w")
     ax.axvline(obs_gap, c="firebrick", lw=2, label=f"observed gap = {obs_gap:.3f}")
-    ax.set_xlabel("Top-to-second mean |SHAP| gap under permuted outcomes")
+    ax.set_xlabel("Top-to-second mean |SHAP| gap under state-permuted outcomes")
     ax.set_ylabel("Frequency"); ax.legend(fontsize=8); ax.grid(alpha=.3)
-    ax.set_title(f"Figure V3: Permutation null (p = {p_gap:.3f}) — the importance\n"
+    ax.set_title(f"Permutation null (p = {p_gap:.3f}) — the importance\n"
                  "gap is not what shuffled data produces")
     fig.tight_layout(); fig.savefig(f"{OUT}/FigV3_permutation_null.png",
                                     bbox_inches="tight"); plt.close(fig)
@@ -351,7 +365,7 @@ def part_g(X_raw, sv):
     Xdf = pd.DataFrame(X_raw, columns=[NICE[f] for f in FEATURES])
     plt.figure(figsize=(7.5, 5))
     shap.dependence_plot(NICE["capex"], sv, Xdf, interaction_index=NICE["debt"], show=False)
-    plt.title("Figure V4: Capital expenditure's SHAP effect, coloured by debt-to-GSDP\n"
+    plt.title("Capital expenditure's SHAP effect, coloured by debt-to-GSDP\n"
               "(Section 7.2's open question, answered with data already in hand)",
               fontweight="bold", fontsize=9)
     plt.tight_layout(); plt.savefig(f"{OUT}/FigV4_shap_interaction_capex_debt.png",
@@ -398,7 +412,7 @@ def main():
     _, sv, imp = shap_importance(X_raw, y)          # pooled corrected-spec SHAP
     part_c(X_raw, y, d, imp)
     part_d(X_raw, y, d)
-    part_e(X_raw, y, imp)
+    part_e(X_raw, y, imp, groups)
     part_f(X, X_raw, y, d)
     part_g(X_raw, sv)
 

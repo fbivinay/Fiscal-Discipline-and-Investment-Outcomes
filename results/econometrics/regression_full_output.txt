@@ -7,7 +7,7 @@ Dep. Variable:                log_fdi   R-squared:                        0.4292
 Estimator:                   PanelOLS   R-squared (Between):             -4.4871
 No. Observations:                  48   R-squared (Within):               0.4292
 Date:                Tue, Aug 04 2026   R-squared (Overall):             -3.3481
-Time:                        12:20:03   Log-likelihood                   -51.975
+Time:                        14:45:30   Log-likelihood                   -51.975
 Cov. Estimator:        Driscoll-Kraay                                           
                                         F-statistic:                      4.9623
 Entities:                          10   P-value                           0.0017
@@ -47,7 +47,7 @@ Dep. Variable:                log_fdi   R-squared:                        0.6429
 Estimator:                  PooledOLS   R-squared (Between):              0.8744
 No. Observations:                  48   R-squared (Within):              -0.0493
 Date:                Tue, Aug 04 2026   R-squared (Overall):              0.6429
-Time:                        12:20:03   Log-likelihood                   -74.170
+Time:                        14:45:30   Log-likelihood                   -74.170
 Cov. Estimator:             Clustered                                           
                                         F-statistic:                      10.287
 Entities:                          10   P-value                           0.0000
@@ -83,7 +83,7 @@ Dep. Variable:                 growth   R-squared:                        0.6893
 Estimator:                   PanelOLS   R-squared (Between):             -32.367
 No. Observations:                  50   R-squared (Within):               0.6893
 Date:                Tue, Aug 04 2026   R-squared (Overall):              0.1206
-Time:                        12:20:03   Log-likelihood                   -140.53
+Time:                        14:45:30   Log-likelihood                   -140.53
 Cov. Estimator:        Driscoll-Kraay                                           
                                         F-statistic:                      15.529
 Entities:                          10   P-value                           0.0000
@@ -123,7 +123,7 @@ Dep. Variable:                 growth   R-squared:                        0.6407
 Estimator:                  PooledOLS   R-squared (Between):             -0.4438
 No. Observations:                  50   R-squared (Within):               0.6597
 Date:                Tue, Aug 04 2026   R-squared (Overall):              0.6407
-Time:                        12:20:03   Log-likelihood                   -144.60
+Time:                        14:45:30   Log-likelihood                   -144.60
 Cov. Estimator:             Clustered                                           
                                         F-statistic:                      10.700
 Entities:                          10   P-value                           0.0000
