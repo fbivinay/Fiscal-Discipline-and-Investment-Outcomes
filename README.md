@@ -22,9 +22,9 @@ The panel is small on purpose: it uses only audited, single-vintage data. Ten st
 
 ## Findings
 
-**Debt predicts FDI between states.** States carrying persistently lower debt-to-GSDP attract significantly more FDI than their peers — roughly 17.6 per cent more per percentage point of lower debt. The relationship holds *across* states, not *within* a state from year to year; Section 7.1 of the paper argues fiscal discipline is a structural signal investors price, not a lever a finance department can pull in one budget.
+**Debt predicts FDI between states.** States carrying persistently lower debt-to-GSDP receive more FDI than their peers — roughly 19 per cent more per percentage point of lower debt. At ten clusters the wild cluster bootstrap the paper defers to puts that coefficient at p = 0.057, significant at ten per cent rather than five, so the claim rests on convergence across methods rather than on that one p-value. The relationship holds *across* states, not *within* a state from year to year; Section 7.1 of the paper argues fiscal discipline is a structural signal investors price, not a lever a finance department can pull in one budget.
 
-The claim does not rest on one p-value. It rests on convergence:
+That convergence:
 
 | Evidence | Result |
 |---|---|
@@ -32,11 +32,12 @@ The claim does not rest on one p-value. It rests on convergence:
 | Specification curve | Negative in **88 of 88** pooled specifications |
 | LASSO / Elastic Net | Debt is the largest standardised coefficient, and enters the regularisation path first |
 | SHAP (random forest) | Debt ranks first in **10 of 10** leave-one-state-out refits |
-| Permutation null | Importance margin reproduced by chance in 0.4 per cent of draws |
+| Mundlak within/between split | Coefficients differ in sign, and differ from each other at a bootstrapped p = 0.017 |
+| Permutation null | Importance margin reproduced by chance in 3.8 per cent of draws, permuting whole states |
 
-**Growth is associated with debt and own tax revenue, not with the deficit.** An earlier version of this work reported a significant deficit-growth effect (p = 0.031) under Driscoll-Kraay standard errors. That result does not survive a wild cluster bootstrap appropriate to ten clusters (p = 0.448) and is no longer claimed. Debt (p = 0.020) and own tax revenue (p = 0.028) do survive. This is a departure from Trivedi and Rajmal (2011) and Panda and Sahay (2022), and is read as a limit of a short panel rather than a contradiction of their longer ones.
+**The growth hypothesis is not supported.** Earlier versions of this work reported first a deficit-growth effect and then a debt-and-own-tax-revenue one. Neither survived. The deficit effect (p = 0.031 under Driscoll-Kraay) fails a wild cluster bootstrap appropriate to ten clusters (p = 0.448). Debt and own tax revenue clear that bootstrap but only while the pandemic is controlled for by a single dummy: replace it with a full set of year fixed effects and own tax revenue goes to zero while the debt coefficient reverses sign, from +1.097 to −0.689. The association was tracking the common shape of the post-pandemic recovery, in which every state's growth rebounded while debt stayed above its pre-pandemic level. H2 is therefore reported as unsupported. Ninety-eight per cent of the variation in growth here is within states and almost all of it is common to them, which is the honest reason a ten-state, five-year panel cannot answer the question; that is a limit of this design rather than a contradiction of the longer panels in Trivedi and Rajmal (2011) and Panda and Sahay (2022), which also model real rather than nominal growth.
 
-**Two states depart from the pattern for identifiable reasons.** Jharkhand is fiscally mid-table with near-zero realised FDI — discipline appears necessary but not sufficient. Uttar Pradesh's apparent weakness is an artefact of DPIIT beginning its series in FY 2021-22.
+**Two states depart from the pattern for identifiable reasons.** Jharkhand is fiscally mid-table with near-zero realised FDI — discipline appears necessary but not sufficient. Uttar Pradesh ranks first on discipline and near-last on realised investment. Part of that is an artefact of DPIIT beginning its series in FY 2021-22, but only part: scaling its three observed years to a five-year equivalent still leaves it ninth of ten, and the rank correlation stays insignificant under every censoring-consistent treatment we tried. It is a genuine counterexample as well as a censored series, and the significant rank correlation reported in Section 6.2 depends on excluding it.
 
 ## Repository layout
 
@@ -135,7 +136,7 @@ python code/specification_tests.py --selftest
 |---|---|
 | Fiscal ratios (deficit, debt, own tax revenue, capital expenditure) | Report of the Sixteenth Finance Commission, Volume II, Chapter 5 annexures, computed from CAG-audited State Finance Accounts |
 | FDI equity inflows, state-wise | Department for Promotion of Industry and Internal Trade (DPIIT) |
-| GSDP and growth | Ministry of Statistics and Programme Implementation (MoSPI), 2011-12 series |
+| GSDP and growth | Ministry of Statistics and Programme Implementation (MoSPI), 2011-12 series, current prices — growth is therefore nominal |
 | Literacy, urbanisation | Census of India 2011 |
 
 Capital expenditure is derived as gross fiscal deficit minus revenue deficit, so it includes net lending — a limitation the paper discusses in Section 7.2. DPIIT began publishing state-wise FDI in October 2019, making FY 2019-20 a six-month flow; Uttar Pradesh's series begins FY 2021-22 and those two cells are missing, not zero.
