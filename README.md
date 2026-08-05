@@ -60,6 +60,16 @@ code/
                               specification, permutation null, stability selection
   specification_tests.py      Estimator choice, error structure, functional form,
                               specification curve, wild cluster bootstrap
+  bootstrap_specification_curve.py
+                              Reruns all 132 specifications of the curve under the
+                              wild cluster bootstrap. The curve as published reports
+                              cluster-robust p-values; this is the same coefficients
+                              on the footing Section 6.7 argues for
+  diagnose_up_sensitivity.py  Decomposes the fixed-effects slope by state (FWL), which
+                              accounts for the Uttar Pradesh entry in Table 23a
+  review3_reruns.py           Mundlak under year effects, the jackknife replacing a
+                              leaking bootstrap in Table 31a, Model 2's lag, and the
+                              refit on exact capital outlay
   reconstruct_from_paper.py   Rebuilds the panel from the manuscript's own
                               published tables and re-derives the results
   verify_against_fc16.py      Checks every fiscal figure in Section 4 against
@@ -93,6 +103,15 @@ python code/ml_validation_corrected.py   # ML validation as reported
 python code/ml_validation_v2.py          # panel-aware extensions
 python code/specification_tests.py       # diagnostics + specification curve
 python code/reconstruct_from_paper.py    # reproducibility check, see below
+```
+
+Three further scripts answer questions raised in review and can be run in any
+order afterwards:
+
+```bash
+python code/bootstrap_specification_curve.py   # the curve, correctly bootstrapped
+python code/diagnose_up_sensitivity.py         # who the growth slope is estimated from
+python code/review3_reruns.py                  # four reruns, see the commit log
 ```
 
 ## Checking the paper against its source
@@ -199,6 +218,8 @@ The two scripts with non-trivial logic carry a self-check:
 ```bash
 python code/ml_validation_v2.py --selftest
 python code/specification_tests.py --selftest
+python code/bootstrap_specification_curve.py --selftest
+python code/diagnose_up_sensitivity.py --selftest
 ```
 
 `specification_tests.py` takes several minutes — the wild cluster bootstrap refits the panel 1,999 times per coefficient. All scripts are seeded (`RNG = 42`) and reproduce the reported numbers exactly.
