@@ -64,6 +64,8 @@ code/
                               published tables and re-derives the results
   verify_against_fc16.py      Checks every fiscal figure in Section 4 against
                               the FC-16 annexures, the stated source
+  verify_against_dpiit.py     Checks the sample selection and Table 11's
+                              cumulative totals against the DPIIT factsheet
 
 results/
   econometrics/               Tables 1-6, Figures 1-10, full regression output
@@ -115,6 +117,17 @@ FY 2021-22 fiscal deficit of 0.0 per cent, the one cell in the panel that looks
 wrong: it reads 0.0 in Annexure 5.1, so the transcription is right and the
 oddity is in the source. Section 4.2 discusses what can and cannot be concluded
 from it.
+
+`verify_against_dpiit.py` covers the FDI side. DPIIT reports state-wise inflow
+as a single cumulative figure rather than year by year, so it cannot confirm
+Table 11 cell by cell, but it settles two things. The sample is the ten largest
+recipients **among states FC-16 reports on**, not off DPIIT's table outright:
+Delhi ranks fourth on FDI and is excluded because it appears nowhere in the
+FC-16 annexures, so no fiscal indicator exists for it, and West Bengal enters in
+its place. And every state's cumulative total in Table 11 is at least as large in
+a later factsheet, as it must be. Jharkhand's is larger by 86 crore over fifteen
+months against Maharashtra's 210,796 crore, which corroborates Section 7.3 from
+data published after the paper's window.
 
 The script needs `Vol2-Annexures.pdf` in the project root, which is not
 redistributed here — download it from the URL in the reference list — and

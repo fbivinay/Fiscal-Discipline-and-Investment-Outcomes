@@ -35,3 +35,6 @@ paper/latex/*.pdf
 # downloadable from indiabudget.gov.in. code/verify_against_fc16.py expects it
 # in the project root; it is not redistributed here.
 /Vol2-Annexures.pdf
+
+# DPIIT factsheet: public document, not redistributed here
+/4128971a6c7fd4a7653ca9e648a5f34b.pdf
