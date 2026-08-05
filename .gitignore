@@ -30,3 +30,8 @@ paper/latex/*.pdf
 
 # Scratch output from analysis reruns — regenerate, do not commit
 /*_out.txt
+
+# The FC-16 annexures PDF is a 5.6 MB public document, cited in the paper and
+# downloadable from indiabudget.gov.in. code/verify_against_fc16.py expects it
+# in the project root; it is not redistributed here.
+/Vol2-Annexures.pdf

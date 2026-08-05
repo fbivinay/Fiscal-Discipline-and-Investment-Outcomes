@@ -62,6 +62,8 @@ code/
                               specification curve, wild cluster bootstrap
   reconstruct_from_paper.py   Rebuilds the panel from the manuscript's own
                               published tables and re-derives the results
+  verify_against_fc16.py      Checks every fiscal figure in Section 4 against
+                              the FC-16 annexures, the stated source
 
 results/
   econometrics/               Tables 1-6, Figures 1-10, full regression output
@@ -90,6 +92,44 @@ python code/ml_validation_v2.py          # panel-aware extensions
 python code/specification_tests.py       # diagnostics + specification curve
 python code/reconstruct_from_paper.py    # reproducibility check, see below
 ```
+
+## Checking the paper against its source
+
+`reconstruct_from_paper.py` shows the paper is internally consistent. It cannot
+show the numbers were transcribed correctly in the first place, which is a
+different question and the one an auditor would ask first.
+
+`verify_against_fc16.py` answers it. It reads the Sixteenth Finance Commission's
+Volume II annexures directly and compares all 200 fiscal figures in Section 4
+against them:
+
+| Annexure | Table | Indicator | Result |
+|---|---|---|---|
+| 5.1 | Table 2 | Fiscal deficit, % GSDP | 50/50 |
+| 5.2 | Table 10 | Revenue deficit, % GSDP | 50/50 |
+| 5.3 | Table 4 | Outstanding liabilities, % GSDP | 50/50 |
+| 5.5 | Table 6 | Own tax revenue, % GSDP | 50/50 |
+
+**200 of 200 match exactly, with no discrepancies.** That includes Jharkhand's
+FY 2021-22 fiscal deficit of 0.0 per cent, the one cell in the panel that looks
+wrong: it reads 0.0 in Annexure 5.1, so the transcription is right and the
+oddity is in the source. Section 4.2 discusses what can and cannot be concluded
+from it.
+
+The script needs `Vol2-Annexures.pdf` in the project root, which is not
+redistributed here — download it from the URL in the reference list — and
+`pdftotext` on the path (poppler; it ships with Git for Windows).
+
+One implementation note, because it is a trap. The annexure headings cannot be
+used to locate the tables: pdftotext's reading order places a table's rows
+either side of the next heading, and Annexure 5.4 reports Special Assistance in
+rupees rather than as a share of GSDP, so it emits no percentage rows and shifts
+every later heading by one relative to its data. Anchoring on headings produces
+confident, wrong answers — it reports own tax revenue as 10-19 per cent of GSDP,
+which is Annexure 5.6's revenue receipts. The script therefore indexes the
+percentage tables by document order, and checks the assignment independently by
+confirming own tax revenue falls below revenue receipts in all 31 rows, which it
+must, being a component of it.
 
 ## Reproducing the paper without trusting this repository
 
