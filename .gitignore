@@ -27,3 +27,6 @@ paper/latex/*.log
 paper/latex/*.out
 paper/latex/*.pdf
 !paper/latex/figures/*.pdf
+
+# Scratch output from analysis reruns — regenerate, do not commit
+/*_out.txt
