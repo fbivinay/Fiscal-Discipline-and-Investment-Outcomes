@@ -1,4 +1,4 @@
-# Fiscal Discipline and Investment Outcomes
+# Fiscal Discipline and Foreign Direct Investment across Indian States
 
 Panel evidence and machine-learning validation from India's ten largest FDI-recipient states, FY 2019-20 to FY 2023-24.
 
