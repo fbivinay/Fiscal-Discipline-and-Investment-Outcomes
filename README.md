@@ -129,6 +129,32 @@ a later factsheet, as it must be. Jharkhand's is larger by 86 crore over fifteen
 months against Maharashtra's 210,796 crore, which corroborates Section 7.3 from
 data published after the paper's window.
 
+### What is not checked against a source
+
+Two of the eight input tables have not been verified against the documents they
+cite, and the record should say so rather than imply otherwise.
+
+| Table | Input | Status |
+|---|---|---|
+| Table 12 | GSDP levels, MoSPI | not checked |
+| Table 14 | Literacy and urbanisation, Census 2011 | not checked |
+| Table 8 (cross-check columns) | Capital outlay, state budget documents | not checked |
+
+Neither gap is load-bearing. The four fiscal regressors are published by FC-16
+*already expressed as a share of GSDP*, so they are verified without reference
+to Table 12: the Commission performed its own division and this repository
+checked its output. GSDP enters the paper only through the rupee-amount tables,
+which are presentational and used in no estimate, through GSDP growth, which is
+the dependent variable of a hypothesis the paper reports as unsupported, and
+through the log-GSDP market-size control of Table 23c, which is a robustness
+check rather than a headline. Literacy and urbanisation enter the pooled
+specification alone, and Section 6.5 shows both lose significance once scale is
+controlled for.
+
+An error in either table could therefore not disturb the debt-FDI result. They
+are listed here because a verification claim is worth only as much as its
+statement of what it does not cover.
+
 The script needs `Vol2-Annexures.pdf` in the project root, which is not
 redistributed here — download it from the URL in the reference list — and
 `pdftotext` on the path (poppler; it ships with Git for Windows).
