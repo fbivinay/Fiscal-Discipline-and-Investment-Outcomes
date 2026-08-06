@@ -1,10 +1,31 @@
 % Economics Bulletin submission — "Preliminary Results" category.
-% Formatting follows the journal's author instructions exactly:
-%   12pt Times, single spaced, 1in margins, no title page, no page numbers,
-%   centred bold Arabic-numbered section headings, tables in Roman numerals
-%   with the caption directly above the table.
-% Seven printed pages or less EXCLUDING tables, figures, appendices and
-% references. Run tools/pagecount.py after editing to check the prose budget.
+%
+% Formatting follows "Instructions to authors for submissions and revisions"
+% (AccessEcon) to the letter. Every rule and where it is satisfied:
+%
+%   Seven printed pages or less, excluding tables, figures, appendices and
+%       references .................................. tools/pagecount.py verifies
+%   Written in English ............................... yes
+%   12pt Times Roman / CM or similar ................. mathptmx, 12pt class
+%   Single spaced, one-inch margins .................. geometry margin=1in
+%   Sections numbered consecutively in Arabic ........ \titleformat below
+%   Section headings centred, bold, 12pt ............. \titleformat below
+%   Tables and figures within the text, in place ..... [H] floats, no "table
+%                                                      about here" placeholders
+%   No title page ................................... document opens at \section
+%   No page numbers ................................. \pagestyle{empty}
+%   Displayed equation numbers in parens, right ...... amsmath default
+%   Footnotes sparse, superscript Arabic ............. none used
+%   Tables numbered in ROMAN numerals ................ \thetable redefined
+%   Short caption directly ABOVE each table .......... captionsetup position=top
+%   References: surname and date in text, no comma ... "Tiebout (1956) claims"
+%   References alphabetical, descending by date ...... checked
+%   Reference style per the journal's examples ....... "Title" *Journal* **Vol**,
+%                                                      pages.  No DOIs — the
+%                                                      journal's own examples
+%                                                      carry none.
+%   Hyperlinks underlined but black .................. ulem \uline + hidelinks
+%
 \documentclass[12pt]{article}
 
 \usepackage[margin=1in]{geometry}
@@ -16,46 +37,60 @@
 \usepackage{titlesec}
 \usepackage{caption}
 \usepackage{amsmath}
-\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
+\usepackage[normalem]{ulem}           % \uline breaks across lines
 
 \pagestyle{empty}                     % no page numbers anywhere
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 
-% Centred, bold, 12pt headings numbered in Arabic, per the instructions.
+% "Sections and subsections should be numbered consecutively in Arabic numerals
+% (as in section 1. and subsection 1.2). Section headings should be centered and
+% in bold 12pt type."  Note the journal's own example: a period after a section
+% number, none after a subsection number.
 \titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{0.5em}{}
+\titleformat{\subsection}{\centering\bfseries\normalsize}{\thesubsection}{0.5em}{}
 \titlespacing*{\section}{0pt}{12pt}{6pt}
 \titlespacing*{\subsection}{0pt}{10pt}{4pt}
 
+% "Number tables consecutively with Roman numerals in order of appearance in the
+% text. A short descriptive caption should be typed directly above each table."
 \renewcommand{\thetable}{\Roman{table}}
 \captionsetup[table]{position=top,font=small,labelfont=bf,skip=4pt}
 
+% Table notes carry the detail that the caption must stay short enough to omit.
+% \par first: without it the minipage sets on the same line as the tabular and
+% its vertical centring drives a two-line note up through the bottom rule.
+\newcommand{\tnote}[1]{%
+  \par\addvspace{4pt}%
+  \begin{minipage}{0.92\textwidth}\footnotesize\raggedright #1\end{minipage}}
+
 \begin{document}
 
-% No title page. The first page begins with section 1, per the instructions;
-% title, authors and abstract are entered through the submission interface.
+% No title page. Per the instructions, the first page of the submitted PDF begins
+% with the first section heading; title, authors and abstract are supplied
+% through the submission interface and the journal generates the title page.
 
 \section{Introduction}
 
 Ten states take almost all of India's foreign direct investment. Since the
 Department for Promotion of Industry and Internal Trade began reporting
 state-wise FDI equity figures in October 2019, those ten have absorbed close to
-97 per cent of the national total (DPIIT, 2024). A natural question is whether
+97 per cent of the national total (DPIIT 2024). A natural question is whether
 fiscal discipline is part of what separates them from the rest, and whether it
 sorts investment among them.
 
 Two literatures speak to this and rarely cite each other. One asks how state
 fiscal policy affects growth: Trivedi and Rajmal (2011) and Panda and Sahay
 (2022) both report that fiscal deficits contract subsequent growth. A
-debt-sustainability literature (Misra, Gupta and Trivedi, 2023; NIPFP, 2024)
+debt-sustainability literature (Misra, Gupta and Trivedi 2023, and NIPFP 2024)
 asks whether current borrowing paths are solvent, but stops before asking what
-those paths do to the investment a state subsequently receives. NITI Aayog's
-Fiscal Health Index (2025) ranks states on fiscal metrics and validates the
-ranking against no outcome at all. Internationally, Feld et al.\ (2024) find
-fiscal decentralisation matters for FDI location, but the sub-national Indian
-case is untested.
+those paths do to the investment a state subsequently receives. NITI Aayog (2025)
+ranks states on fiscal metrics in its Fiscal Health Index and validates that
+ranking against no outcome at all. Internationally, Blonigen (2005) surveys the
+empirical determinants of FDI and Feld, Köhler, Palhuca and Schaltegger (2024)
+find that fiscal decentralisation matters for where it locates, but the
+sub-national Indian case is untested.
 
 This note reports what a ten-state, five-year panel can and cannot establish
 about that question, and the answer is more useful for its negative half. States
@@ -85,15 +120,15 @@ whose earlier cells are treated as missing rather than zero.
 Four fiscal indicators, each a share of gross state domestic product, measure
 discipline: gross fiscal deficit, outstanding liabilities (debt), own tax revenue
 and capital expenditure. All are computed from the Sixteenth Finance Commission's
-Volume II annexures (Government of India, 2025), which derive from CAG-audited
+Volume II annexures (Government of India 2025), which derive from CAG-audited
 State Finance Accounts. Capital expenditure is not reported directly and is
 derived from the identity that the gross fiscal deficit equals the revenue
 deficit plus capital outlay plus net lending, so it includes net lending; it is
 therefore a noisy proxy for productive spending, and Section 4 declines to
 interpret its coefficient. FDI is DPIIT's (2024) state-wise equity series and
 GSDP is MoSPI's (2024) comparable 2011--12 series, from which nominal growth is
-computed year on year. Literacy and urbanisation from Census 2011 (Office of the
-Registrar General and Census Commissioner, India, 2011) enter the pooled
+computed year on year. Literacy and urbanisation from the 2011 Census (Office of
+the Registrar General and Census Commissioner 2011) enter the pooled
 specification only.
 
 Table~\ref{tab:desc} reports the range check run before any estimation. One
@@ -109,7 +144,7 @@ cross-state variation to explain.
 
 \begin{table}[H]
 \centering
-\caption{Descriptive statistics ($N=50$; FDI, $N=48$).}
+\caption{Descriptive statistics.}
 \label{tab:desc}
 \small
 \begin{tabular}{@{}lrrrrr@{}}
@@ -124,6 +159,8 @@ FDI (Rs crore)                & 48 & 31{,}194 & 43{,}933 & 44 & 163{,}795 \\
 GSDP growth (\%)              & 50 & 10.39 & 7.35  & $-4.38$ & 26.76 \\
 \bottomrule
 \end{tabular}
+\tnote{The two missing FDI cells are Uttar Pradesh in FY 2019--20 and FY
+2020--21, for which DPIIT does not report separately.}
 \end{table}
 
 \section{Method}
@@ -136,7 +173,7 @@ Two models are estimated. Model 1 takes log FDI as the dependent variable, Model
 + \beta_3 \mathrm{otr}_{it} + \beta_4 \mathrm{capex}_{it} + \beta_5 \mathrm{covid}_t + \varepsilon_{it}
 \end{equation}
 
-Both are run twice: entity fixed effects with Driscoll-Kraay (1998) standard
+Both are run twice: entity fixed effects with Driscoll and Kraay (1998) standard
 errors, and pooled OLS with the two Census controls. Keeping both separates the
 within-state from the between-state dimension, and that distinction turns out to
 carry the argument.
@@ -144,7 +181,7 @@ carry the argument.
 Ten clusters is far too few for the cluster-robust $t$-distribution to be
 reliable, so every coefficient the paper relies on is re-estimated by wild
 cluster bootstrap imposing the null, with Rademacher weights over the ten states
-(Cameron, Gelbach and Miller, 2008). That bootstrap, not the cluster-robust
+(Cameron, Gelbach and Miller 2008). That bootstrap, not the cluster-robust
 $p$-value, is the arbiter throughout. We also report a Mundlak (1978) correlated
 random effects specification, in which each regressor enters twice --- as the
 state's five-year mean and as the annual deviation from it --- so that the
@@ -152,11 +189,11 @@ between-state and within-state coefficients are identified jointly and can be
 tested against each other inside one equation.
 
 Because the panel is short and one of its five years is an extreme common shock,
-the same prediction problem is run again through LASSO (Tibshirani, 1996), Elastic
-Net (Zou and Hastie, 2005) and SHAP values (Lundberg and Lee, 2017) from a shallow
-random forest (Breiman, 2001), under state-blocked cross-validation. These stay
+the same prediction problem is run again through LASSO (Tibshirani 1996), Elastic
+Net (Zou and Hastie 2005) and SHAP values (Lundberg and Lee 2017) from a shallow
+random forest (Breiman 2001), under state-blocked cross-validation. These stay
 credible at forty-eight observations where instrument-heavy panel GMM estimators
-do not (Roodman, 2009; Mullainathan and Spiess, 2017). If a penalised linear
+do not (Roodman 2009, and Mullainathan and Spiess 2017). If a penalised linear
 selector, a tree-based explainer and a panel regression all land on the same
 variable, the agreement is worth more than any one $p$-value --- subject to a
 qualification Section 5 makes precise.
@@ -181,7 +218,7 @@ states, it is positive.
 
 \begin{table}[H]
 \centering
-\caption{Model 1, $\ln$(FDI). Fixed effects with Driscoll-Kraay standard errors, and pooled OLS with Census controls.}
+\caption{Model 1, log FDI.}
 \label{tab:m1}
 \small
 \begin{tabular}{@{}lrrrr@{}}
@@ -199,6 +236,8 @@ Literacy            & ---      & ---   & $+0.101$ & 0.035 \\
 Urbanisation        & ---      & ---   & $+0.005$ & 0.909 \\
 \bottomrule
 \end{tabular}
+\tnote{Literacy and urbanisation are time-invariant and absorbed by the fixed
+effects, so they enter the pooled specification only.}
 \end{table}
 
 Table~\ref{tab:boot} re-estimates these under the wild cluster bootstrap, and the
@@ -210,7 +249,7 @@ is made anywhere in this note.
 
 \begin{table}[H]
 \centering
-\caption{Cluster-robust and wild cluster bootstrap $p$-values, every coefficient relied on. The bootstrap imposes the null and uses Rademacher weights over the ten states.}
+\caption{Cluster-robust and wild cluster bootstrap $p$-values.}
 \label{tab:boot}
 \small
 \begin{tabular}{@{}lrrrl@{}}
@@ -227,6 +266,8 @@ M2 within: own tax revenue     & $+4.083$  & 0.045 & 0.028 & Yes \\
 M2 within: COVID dummy         & $-13.783$ & 0.000 & 0.003 & Yes \\
 \bottomrule
 \end{tabular}
+\tnote{The bootstrap imposes the null and uses Rademacher weights over the ten
+states, and is the appropriate reference distribution at this number of clusters.}
 \end{table}
 
 \subsection{Between states, not within them}
@@ -241,7 +282,7 @@ conservative.
 
 \begin{table}[H]
 \centering
-\caption{Debt coefficient in a Mundlak specification of Model 1 and in a between estimator on the ten state means. Standard errors clustered by state.}
+\caption{Mundlak decomposition of the debt coefficient.}
 \label{tab:mundlak}
 \small
 \begin{tabular}{@{}lrrl@{}}
@@ -254,6 +295,8 @@ Test of equality                & $0.626$  & 0.017  & The two dimensions differ 
 Between estimator               & $-0.237$ & 0.022  & Cross-state relation, direct \\
 \bottomrule
 \end{tabular}
+\tnote{Standard errors clustered by state. The equality test is reported at its
+wild cluster bootstrap $p$-value.}
 \end{table}
 
 The two coefficients answer different questions. The pooled one asks whether a
@@ -275,7 +318,7 @@ test, and we count them as one verdict.
 
 \begin{table}[H]
 \centering
-\caption{Machine-learning importance, five fiscal predictors, state-blocked cross-validation. LASSO and Elastic Net coefficients are standardised; SHAP is mean $|$SHAP$|$ from a random forest.}
+\caption{Machine-learning importance, five fiscal predictors.}
 \label{tab:ml}
 \small
 \begin{tabular}{@{}lrrr@{}}
@@ -289,6 +332,9 @@ Own tax revenue     & $+0.039$ & $+0.098$ & 0.208 \\
 COVID year          & $+0.129$ & $+0.161$ & 0.007 \\
 \bottomrule
 \end{tabular}
+\tnote{LASSO and Elastic Net coefficients are standardised, under state-blocked
+cross-validation. SHAP importance is the mean absolute SHAP value from a shallow
+random forest across all forty-eight observations.}
 \end{table}
 
 The growth hypothesis fails outright. Under a single COVID dummy, within-state
@@ -320,7 +366,7 @@ and receives less.
 
 \begin{table}[H]
 \centering
-\caption{Every estimate this note relies on, with and without regional indicators. Rank correlation is Spearman's $\rho$ between five-year mean debt and five-year total FDI across the ten states; ``with region'' removes regional means from both series.}
+\caption{The debt result with and without regional indicators.}
 \label{tab:region}
 \small
 \begin{tabular}{@{}llrr@{}}
@@ -334,6 +380,10 @@ LASSO             & Standardised debt coef.& $-1.376$ & $-0.679$ \\
 Random forest     & Mean $|$SHAP$|$, debt  & $1.029$  & $1.006$ \\
 \bottomrule
 \end{tabular}
+\tnote{Rank correlation is Spearman's $\rho$ between five-year mean debt and
+five-year total FDI across the ten states; ``with region'' removes regional means
+from both series. The four regions are west, south, north and east as grouped in
+the text.}
 \end{table}
 
 Only the SHAP ranking is unmoved. That is the weakest of the five as a defence,
@@ -353,20 +403,20 @@ cannot be refuted from these data.
 
 That is a statement about the design rather than about the question, and the
 distinction matters because the Commission's annexures already contain the fiscal
-side of the remedy. FC-16 reports all four indicators for twenty-eight states and
-DPIIT reports a cumulative inflow for each. Across the ten states studied here,
-72 per cent of the cross-sectional variance in debt lies between regions and the
-mean within-region spread is 6.7 percentage points. Across twenty-six states with
-both series available, the between-region share falls to 35 per cent and the mean
-within-region spread more than doubles to 15.1 points, with six regions averaging
-over four states each rather than four regions averaging two and a half. A
-cross-section on those twenty-six states points the same way as this panel: debt
-alone gives $-0.299$ ($p = 0.004$), and with regional indicators added it holds at
-$-0.143$ ($p = 0.056$) instead of collapsing to zero as it does here. We do not
-report that as a result --- the wider set has no GSDP series in our hands and so
-no market-size control, and a cumulative total over a different window is not the
-annual outcome modelled here. We report it as evidence that the identifying
-design exists and is within reach.
+side of the remedy. The Sixteenth Finance Commission reports all four indicators
+for twenty-eight states and DPIIT reports a cumulative inflow for each. Across
+the ten states studied here, 72 per cent of the cross-sectional variance in debt
+lies between regions and the mean within-region spread is 6.7 percentage points.
+Across twenty-six states with both series available, the between-region share
+falls to 35 per cent and the mean within-region spread more than doubles to 15.1
+points, with six regions averaging over four states each rather than four regions
+averaging two and a half. A cross-section on those twenty-six states points the
+same way as this panel: debt alone gives $-0.299$ ($p = 0.004$), and with
+regional indicators added it holds at $-0.143$ ($p = 0.056$) instead of collapsing
+to zero as it does here. We do not report that as a result --- the wider set has
+no GSDP series in our hands and so no market-size control, and a cumulative total
+over a different window is not the annual outcome modelled here. We report it as
+evidence that the identifying design exists and is within reach.
 
 \section{Conclusion}
 
@@ -375,18 +425,18 @@ down relative to its own economy, but only between states, not within a state
 from one year to the next. Five estimators from three families agree on the sign,
 and the between-within split survives inside a single equation. What none of them
 can do is separate that fiscal signal from a regional one. Ten states across four
-regions do not contain the variation required, and the honest report of this panel
-is the identification problem rather than the coefficient.
+regions do not contain the variation required, and the honest report of this
+panel is the identification problem rather than the coefficient.
 
 Two implications follow for practice. For a state finance department, the reading
 consistent with these estimates is that fiscal position operates as a structural,
 between-state signal rather than a lever: a state that has held debt below 25 per
 cent of GSDP for five consecutive years is in a different competitive tier from
 one that has not, and no single budget year moves that. For an index builder ---
-NITI Aayog's Fiscal Health Index (2025) being the immediate case --- the result is
-a caution. The composite ranking constructed here is outperformed by debt alone
-on every outcome tested, and a composite validated against no outcome cannot know
-whether it is measuring anything.
+NITI Aayog (2025) being the immediate case --- the result is a caution. The
+composite ranking constructed here is outperformed by debt alone on every outcome
+tested, and a composite validated against no outcome cannot know whether it is
+measuring anything.
 
 The extension that would settle the question is specific rather than aspirational:
 a panel wide enough to hold region fixed while debt still varies within it.
@@ -394,73 +444,78 @@ Twenty-six states clear that bar where ten do not.
 
 \section*{Data and code availability}
 
-The complete dataset, analysis code, results and the full-length working paper
-from which this note is drawn are openly available at
-\url{https://github.com/fbivinay/Fiscal-Discipline-and-Investment-Outcomes}. The
-repository contains the audited source series, the 50-row analysis panel behind
-every estimate reported here, and every analysis script.
+The dataset, the analysis code, and the full-length working paper from which this
+note is drawn are openly available at
+
+\begin{center}
+\href{https://github.com/fbivinay/Fiscal-Discipline-and-Investment-Outcomes}%
+{\uline{https://github.com/fbivinay/Fiscal-Discipline-and-Investment-Outcomes}}
+\end{center}
+
+The repository holds the audited source series, the fifty-row analysis panel
+behind every estimate reported here, and every analysis script.
 
 \section*{References}
 \small
 
 \hangindent=0.5in\hangafter=1
-Blonigen, B. A. (2005). A review of the empirical literature on FDI determinants. Atlantic Economic Journal, 33(4), 383-403. \url{https://doi.org/10.1007/s11293-005-2868-9}
+Blonigen, B.A. (2005) ``A review of the empirical literature on FDI determinants'' \textit{Atlantic Economic Journal} \textbf{33}, 383-403.
 
 \hangindent=0.5in\hangafter=1
-Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32. \url{https://doi.org/10.1023/A:1010933404324}
+Breiman, L. (2001) ``Random forests'' \textit{Machine Learning} \textbf{45}, 5-32.
 
 \hangindent=0.5in\hangafter=1
-Cameron, A. C., Gelbach, J. B., \& Miller, D. L. (2008). Bootstrap-based improvements for inference with clustered errors. Review of Economics and Statistics, 90(3), 414-427. \url{https://doi.org/10.1162/rest.90.3.414}
+Cameron, A.C., J.B. Gelbach and D.L. Miller (2008) ``Bootstrap-based improvements for inference with clustered errors'' \textit{Review of Economics and Statistics} \textbf{90}, 414-427.
 
 \hangindent=0.5in\hangafter=1
-Department for Promotion of Industry and Internal Trade (DPIIT). (2024). State-wise FDI equity inflows (from October 2019). Ministry of Commerce and Industry, Government of India. \url{https://dpiit.gov.in}
+Department for Promotion of Industry and Internal Trade (DPIIT) (2024) \textit{State-wise FDI Equity Inflows from October 2019}, Ministry of Commerce and Industry: New Delhi.
 
 \hangindent=0.5in\hangafter=1
-Driscoll, J. C., \& Kraay, A. C. (1998). Consistent covariance matrix estimation with spatially dependent panel data. Review of Economics and Statistics, 80(4), 549-560. \url{https://doi.org/10.1162/003465398557825}
+Driscoll, J.C. and A.C. Kraay (1998) ``Consistent covariance matrix estimation with spatially dependent panel data'' \textit{Review of Economics and Statistics} \textbf{80}, 549-560.
 
 \hangindent=0.5in\hangafter=1
-Feld, L. P., Köhler, E. A., Palhuca, L., \& Schaltegger, C. A. (2024). Fiscal federalism and foreign direct investment: An empirical analysis. The World Economy, 47(6), 2287-2331. \url{https://doi.org/10.1111/twec.13547}
+Feld, L.P., E.A. Köhler, L. Palhuca and C.A. Schaltegger (2024) ``Fiscal federalism and foreign direct investment: an empirical analysis'' \textit{The World Economy} \textbf{47}, 2287-2331.
 
 \hangindent=0.5in\hangafter=1
-Government of India. (2025). Report of the Sixteenth Finance Commission, Volume II: Annexures. Ministry of Finance. \url{https://indiabudget.gov.in/doc/16fcvol2.pdf}
+Government of India (2025) \textit{Report of the Sixteenth Finance Commission, Volume II: Annexures}, Ministry of Finance: New Delhi.
 
 \hangindent=0.5in\hangafter=1
-Lundberg, S. M., \& Lee, S.-I. (2017). A unified approach to interpreting model predictions. Advances in Neural Information Processing Systems, 30, 4765-4774. \url{https://arxiv.org/abs/1705.07874}
+Lundberg, S.M. and S.-I. Lee (2017) ``A unified approach to interpreting model predictions'' \textit{Advances in Neural Information Processing Systems} \textbf{30}, 4765-4774.
 
 \hangindent=0.5in\hangafter=1
-Ministry of Statistics and Programme Implementation (MoSPI). (2024). State-wise Gross State Domestic Product, 2011-12 series. Government of India. \url{https://mospi.gov.in}
+Ministry of Statistics and Programme Implementation (MoSPI) (2024) \textit{State-wise Gross State Domestic Product, 2011-12 Series}, Government of India: New Delhi.
 
 \hangindent=0.5in\hangafter=1
-Misra, S., Gupta, K., \& Trivedi, P. (2023). Sub-national government debt sustainability in India: An empirical analysis. Macroeconomics and Finance in Emerging Market Economies, 16(1), 57-79. \url{https://doi.org/10.1080/17520843.2021.1948171}
+Misra, S., K. Gupta and P. Trivedi (2023) ``Sub-national government debt sustainability in India: an empirical analysis'' \textit{Macroeconomics and Finance in Emerging Market Economies} \textbf{16}, 57-79.
 
 \hangindent=0.5in\hangafter=1
-Mullainathan, S., \& Spiess, J. (2017). Machine learning: An applied econometric approach. Journal of Economic Perspectives, 31(2), 87-106. \url{https://doi.org/10.1257/jep.31.2.87}
+Mullainathan, S. and J. Spiess (2017) ``Machine learning: an applied econometric approach'' \textit{Journal of Economic Perspectives} \textbf{31}, 87-106.
 
 \hangindent=0.5in\hangafter=1
-Mundlak, Y. (1978). On the pooling of time series and cross section data. Econometrica, 46(1), 69-85. \url{https://doi.org/10.2307/1913646}
+Mundlak, Y. (1978) ``On the pooling of time series and cross section data'' \textit{Econometrica} \textbf{46}, 69-85.
 
 \hangindent=0.5in\hangafter=1
-National Institute of Public Finance and Policy (NIPFP). (2024). How much debt is optimal for the major Indian states? Economic growth vs. debt sustainability (Working Paper No. 411). \url{https://nipfp.org.in/media/documents/WP_411_2024.pdf}
+National Institute of Public Finance and Policy (NIPFP) (2024) ``How much debt is optimal for the major Indian states? Economic growth vs. debt sustainability'' NIPFP working paper number 411.
 
 \hangindent=0.5in\hangafter=1
-NITI Aayog. (2025). Fiscal Health Index 2025. Government of India. \url{https://niti.gov.in}
+NITI Aayog (2025) \textit{Fiscal Health Index 2025}, Government of India: New Delhi.
 
 \hangindent=0.5in\hangafter=1
-Office of the Registrar General \& Census Commissioner, India. (2011). Census of India 2011, primary census abstract. Ministry of Home Affairs, Government of India. \url{https://censusindia.gov.in}
+Office of the Registrar General and Census Commissioner (2011) \textit{Census of India 2011, Primary Census Abstract}, Ministry of Home Affairs: New Delhi.
 
 \hangindent=0.5in\hangafter=1
-Panda, M., \& Sahay, S. (2022). Determinants of economic growth across states in India. In S. R. Hashim, R. Mukherji, \& B. Mishra (Eds.), Perspectives on inclusive policies for development in India (pp. 133-152). Springer. \url{https://doi.org/10.1007/978-981-19-0185-0_8}
+Panda, M. and S. Sahay (2022) ``Determinants of economic growth across states in India'' in \textit{Perspectives on Inclusive Policies for Development in India} by S.R. Hashim, R. Mukherji and B. Mishra, Eds., Springer: Singapore, 133-152.
 
 \hangindent=0.5in\hangafter=1
-Roodman, D. (2009). How to do xtabond2: An introduction to difference and system GMM in Stata. Stata Journal, 9(1), 86-136. \url{https://doi.org/10.1177/1536867X0900900106}
+Roodman, D. (2009) ``How to do xtabond2: an introduction to difference and system GMM in Stata'' \textit{Stata Journal} \textbf{9}, 86-136.
 
 \hangindent=0.5in\hangafter=1
-Tibshirani, R. (1996). Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society, Series B, 58(1), 267-288. \url{https://doi.org/10.1111/j.2517-6161.1996.tb02080.x}
+Tibshirani, R. (1996) ``Regression shrinkage and selection via the lasso'' \textit{Journal of the Royal Statistical Society, Series B} \textbf{58}, 267-288.
 
 \hangindent=0.5in\hangafter=1
-Trivedi, P., \& Rajmal. (2011). Growth effects of fiscal policy of Indian states. Millennial Asia, 2(2), 141-162. \url{https://doi.org/10.1177/097639961100200201}
+Trivedi, P. and Rajmal (2011) ``Growth effects of fiscal policy of Indian states'' \textit{Millennial Asia} \textbf{2}, 141-162.
 
 \hangindent=0.5in\hangafter=1
-Zou, H., \& Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society, Series B, 67(2), 301-320. \url{https://doi.org/10.1111/j.1467-9868.2005.00503.x}
+Zou, H. and T. Hastie (2005) ``Regularization and variable selection via the elastic net'' \textit{Journal of the Royal Statistical Society, Series B} \textbf{67}, 301-320.
 
 \end{document}

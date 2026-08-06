@@ -7,8 +7,48 @@ Build: `pdflatex main.tex` twice, from this directory. Check the prose budget
 with `python tools/pagecount.py` after any edit.
 
 **Current state: 8 pages total, 5 prose pages, 2 to spare** against the seven-page
-limit. Verified: no title page, no page numbers, Tables I–VI in Roman numerals,
-centred bold Arabic section headings.
+limit. Compiles with no overfull boxes and no undefined references.
+
+## Compliance against the author instructions
+
+Every rule in `Economics Bulletin author guildlines-2012.pdf`, and where it is met.
+
+| Rule (journal's wording) | Status |
+|---|---|
+| "Be **seven** printed pages or less excluding tables, figures, appendices and references" | 5 prose pages. `tools/pagecount.py` measures it the way the rule is written, by stripping floats and back matter and recounting |
+| "Be written in English" | Yes |
+| "Use 12pt Times Roman, CM … or other similar font" | `mathptmx` (Times), `12pt` class option |
+| "Pages should be single spaced with one-inch margins" | `geometry margin=1in`, no line-spacing package |
+| "Sections and subsections … numbered consecutively in Arabic numerals (as in section 1. and subsection 1.2)" | `\titleformat` gives `1.` for sections and `4.1` for subsections — matching the period convention in their own example |
+| "Section headings should be centered and in bold 12pt type" | Both section and subsection headings centred and bold at 12pt |
+| "Figures, and tables should be included **within** the manuscript in the correct place… do not substitute text such as 'figure 1 about here'" | All six tables set `[H]` at the point of discussion. No placeholders |
+| "**Do not include a title page with any submission** … the first page of the PDF you submit should begin with the title of the first section" | Page 1 opens at `1. Introduction` |
+| "Do not include page numbers anywhere in your final PDF" | `\pagestyle{empty}` |
+| "Numbers for displayed equations should be placed in parentheses at the right margin" | Equation (1), amsmath default |
+| "Footnotes should be used sparingly" | None used |
+| "Number tables consecutively with **Roman numerals** in order of appearance" | Tables I–VI, in text order |
+| "A short descriptive caption should be typed directly above each table" | Captions above and kept to one line; qualifying detail moved to notes below each table |
+| "Cite references in the text by author's surname and date" — their examples show **no comma** before the year | `(DPIIT 2024)`, `(Cameron, Gelbach and Miller 2008)`, `(Roodman 2009, and Mullainathan and Spiess 2017)` |
+| "References should be listed in alphabetical order and in descending order of date" | Checked: Blonigen → Zou |
+| "Style and punctuate references according to the following examples" | Restyled to their format: `Surname, A.B. (Year) "Title" *Journal* **Vol**, pages.` Volume bold, journal italic, no DOIs — their own examples carry none |
+| "hyperlinks be underlined but appear in black" | The one URL uses `\uline` with `hidelinks` |
+| Every listed reference is cited in the text | Checked programmatically; Blonigen (2005) was uncited and is now cited in the introduction |
+
+## Why this venue
+
+Free, no article processing charge, peer-reviewed, and publishes immediately on
+acceptance. Indexed in **Scopus** (SJR 0.152, Q4, h-index 42), **ESCI**, **ABDC**,
+**EconLit** and **RePEc**. Publisher is AccessEcon LLC.
+
+Q4 is the bottom quartile, so this is a low-prestige Scopus journal — the trade
+being made deliberately in exchange for speed and zero cost. Metrics above come
+from aggregator sites and should be re-checked against Elsevier's own Scopus
+source list before being quoted to anyone.
+
+Note that UGC discontinued the CARE list on 3 October 2024 and stopped
+maintaining it in February 2025, replacing it with 36 parameters each institution
+applies itself. Any journal still advertising "UGC CARE listed" is citing a dead
+list. Confirm what St. Joseph's now accepts.
 
 ## Metadata for the submission interface
 
@@ -78,12 +118,31 @@ rather than a truncated long one.
 ## Before submitting
 
 1. **Co-author and supervisor sign-off** on this version specifically — it makes
-   a different headline claim from the full paper.
-2. **Upload the code/data ZIP.** The journal accepts one and publishes it. The
-   repository is already in the right shape; zip `code/` and `data/`. Note that
-   anything uploaded in the appendix and supplemental slots with the final draft
-   is made public.
-3. **Optionally upload the full paper as the appendix PDF** — it is the natural
-   companion, and it costs nothing against the page limit.
-4. Confirm the preprint is posted first if you want the timestamp to precede
-   review.
+   a different headline claim from the full paper. The journal's terms require
+   that "all of the authors as well as the institutions at which the work was
+   carried out approve of its submission".
+2. **Send the cover letter** in `COVER_LETTER.md`. Optional by the instructions,
+   but the General Publication Terms make it the authors' responsibility to keep
+   editors informed about related research in other outlets, and a longer version
+   of this work is public on GitHub. The letter discloses it.
+3. **Upload the code/data ZIP.** Zip `code/` and `data/`. The instructions allow
+   a ZIP "containing programming code, data, or other relevant details" and ask
+   for a short text description of it.
+4. **Optionally upload the full paper as the appendix PDF.** The instructions
+   allow an appendix "which will be sent to the editors and referees, but which
+   may not be intended for publication". It costs nothing against the page limit.
+5. **At final-draft stage, re-check the author metadata.** The instructions warn:
+   "Check and correct the metadata especially for number and order or coauthors …
+   We will not be able to make corrections after the proofs are published."
+6. **Know what becomes public.** "The supplemental data and appendix will be made
+   publicly available. If you do not wish this to happen do not upload anything in
+   these slots with your final draft."
+
+## What compliance does and does not buy
+
+Everything above removes the avoidable reasons for rejection — formatting, style,
+length, disclosure. It does not make acceptance certain, and nothing can: the
+paper still goes to referees who will judge whether a fifty-observation panel
+reporting its own identification failure is worth publishing. The honest case for
+it is that the negative result is clearly established and the remedy is specified.
+That is a real argument, and it is the one the cover letter makes.
