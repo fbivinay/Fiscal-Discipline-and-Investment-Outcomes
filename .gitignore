@@ -48,3 +48,8 @@ paper/submission/eb_short/*.out
 
 # DPIIT factsheet: public document, not redistributed here
 /4128971a6c7fd4a7653ca9e648a5f34b.pdf
+
+# Economics Bulletin author instructions: the journal's own document, downloaded
+# from accessecon.com. Compliance against it is recorded in
+# paper/submission/eb_short/README.md rather than by redistributing the PDF.
+/Economics Bulletin author guildlines-2012.pdf
