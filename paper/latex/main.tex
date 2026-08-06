@@ -90,9 +90,9 @@ This paper closes that gap. We use a balanced panel of India's ten largest FDI-r
 
 Because the panel is short and one of its five years is an extreme common shock, we do not stop at the regression. The same prediction problem is run again through LASSO, Elastic Net, and SHAP values from a shallow random forest. These methods were chosen because they stay credible at forty-eight observations, where instrument-heavy panel GMM estimators do not (Roodman, 2009). If a regularised linear selector, a non-linear tree-based explainer and a fixed-effects panel regression all land on the same variable, that agreement is worth more than any one method's p-value. We also report a methodological pitfall we walked into and corrected. An early SHAP specification included the time-invariant Census literacy and urbanisation controls, which let the random forest use urbanisation as a disguised state identifier and inflated its apparent importance. Dropping both controls, and restricting the machine-learning stage to the same five time-varying regressors the fixed-effects model uses, removes the leakage. Diagnosis and corrected results are both reported in Section 6.
 
-Inputs are reported in full. Every year-wise fiscal amount and ratio, the raw FDI and GSDP series each indicator was built from, the Census control variables, and the composite-ranking procedure all appear in Section 4. A reader can rebuild every regression in Sections 6 and 7 from the raw numbers, without taking any intermediate step on faith. One column of one table is the exception, and Section 6.2 identifies it.
+Inputs are reported in full. Every year-wise fiscal amount and ratio, the raw FDI and GSDP series each indicator was built from, the Census control variables, and the composite-ranking procedure all appear in Section 4 and in Appendix A. A reader can rebuild every regression in Sections 6 and 7 from the raw numbers, without taking any intermediate step on faith. One column of one table is the exception, and Section 6.2 identifies it.
 
-Section 2 surveys the work this paper builds on and departs from. Section 3 sets out the channels through which a fiscal position could plausibly reach an investor, together with the rival agglomeration account, and states the two hypotheses. Section 4 is the data section, and it is intentionally long. It includes the sample, sources, every input series in both rupee and ratio form, the control variables, and the detailed ranking procedure with a worked example. Section 5 focuses on estimation. Its first two parts present the econometric and machine-learning specifications. Section 5.3 then outlines the entire analytical process, from the raw source files to the convergence test, which serves as the final validation step of the paper. Results are in Section 6. Section 7 interprets them, with particular attention to the between-state versus within-state contrast and to the Jharkhand and Uttar Pradesh cases. Section 8 closes with policy implications and limits.
+Section 2 surveys the work this paper builds on and departs from. Section 3 sets out the channels through which a fiscal position could plausibly reach an investor, together with the rival agglomeration account, and states the two hypotheses. Section 4 is the data section. It covers the sample, the sources, the control variables and the detailed ranking procedure with a worked example; every input series, in both rupee and ratio form, is tabulated in Appendix A. Section 5 focuses on estimation. Its first two parts present the econometric and machine-learning specifications. Section 5.3 then outlines the entire analytical process, from the raw source files to the convergence test, which serves as the final validation step of the paper. Results are in Section 6. Section 7 interprets them, with particular attention to the between-state versus within-state contrast and to the Jharkhand and Uttar Pradesh cases. Section 8 closes with policy implications and limits.
 
 \FloatBarrier
 \section{Review of Literature}
@@ -153,7 +153,7 @@ Both hypotheses are tested twice in Section 6, within states over time and betwe
 
 The sample is a balanced panel of ten states over five fiscal years, FY 2019-20 through FY 2023-24, giving fifty state-year cells. The ten are Maharashtra, Karnataka, Gujarat, Tamil Nadu, Haryana, Telangana, Jharkhand, Rajasthan, West Bengal and Uttar Pradesh: the largest recipients of FDI equity inflow among the states the Sixteenth Finance Commission reports on. Both halves of that sentence do work, and the qualification is not cosmetic. Read off DPIIT's table alone the tenth place would go to Delhi, which ranks fourth on cumulative inflow since October 2019 and ahead of six states in this sample, and West Bengal would fall outside the ten. Delhi is a union territory with a legislature rather than a state, and it does not appear anywhere in the FC-16 annexures, so none of the four fiscal indicators this paper is built on exists for it. The exclusion is forced by the fiscal source rather than chosen, and West Bengal enters in its place. Anyone comparing this sample against DPIIT's ranking directly should expect that one substitution and no other. Forty-eight of the fifty cells carry a usable FDI observation. The two that do not belong to Uttar Pradesh, whose earliest years are missing rather than zero, because DPIIT's state-wise reporting for that state starts only in FY 2021-22. We treat this as left-censoring, not as an absence of investment, and test its influence directly in Section 6.5.
 
-Every regression variable used anywhere in this paper is reproducible from the tables in this section, with the single exception noted in Section 6.2: the four fiscal indicators, reported first as rupee amounts and then as the percent-of-GSDP ratios actually used as regressors (Sections 4.3-4.4), raw FDI and GSDP by state and year (Section 4.5), the two Census control variables (Section 4.6), and the exact fiscal discipline ranking procedure, with a worked example (Section 4.7).
+Every regression variable used anywhere in this paper is reproducible from the tables of Appendix A, with the single exception noted in Section 6.2: the four fiscal indicators, reported first as rupee amounts and then as the percent-of-GSDP ratios actually used as regressors (Sections 4.3-4.4), raw FDI and GSDP by state and year (Section 4.5), the two Census control variables (Section 4.6), and the exact fiscal discipline ranking procedure, with a worked example (Section 4.7).
 
 \subsection{Primary source and definitional notes}
 
@@ -163,61 +163,9 @@ Capital expenditure is not directly reported in the FC-16 annexures and is deriv
 
 \subsection{Fiscal deficit and debt, year-wise}
 
-Gross fiscal deficit is the standard flow measure of a state's annual borrowing requirement; outstanding liabilities (debt) is the resulting stock. Both are reported below first as the underlying rupee amount and then as a percentage of that year's GSDP, which is the ratio form used as the regressor in every model in this paper.
+Gross fiscal deficit is the standard flow measure of a state's annual borrowing requirement; outstanding liabilities (debt) is the resulting stock. Both are reported first as the underlying rupee amount and then as a percentage of that year's GSDP, which is the ratio form used as the regressor in every model in this paper.
 
-\begin{table}[H]
-\centering
-\caption{Gross fiscal deficit, Rupees crore, by state and fiscal year.}
-\label{tab:1}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
-\midrule
-Maharashtra & 63763 & 49602 & 50301 & 69189 & 89229 & 322084 \\
-Uttar Pradesh & -11901 & 49347 & 31610 & 65482 & 84572 & 219110 \\
-Telangana & 32303 & 47155 & 42716 & 32795 & 49702 & 204671 \\
-Gujarat & 29108 & 37170 & 11525 & 19831 & 29110 & 126744 \\
-Karnataka & 38779 & 54170 & 47474 & 45400 & 63931 & 249754 \\
-Jharkhand & 8068 & 13352 & 0 & 4591 & 6519 & 32530 \\
-Tamil Nadu & 61008 & 94769 & 76682 & 86162 & 96803 & 415424 \\
-Haryana & 31000 & 25518 & 24329 & 32475 & 31480 & 144802 \\
-Rajasthan & 38000 & 54967 & 41825 & 50242 & 66946 & 251980 \\
-West Bengal & 37731 & 39963 & 43864 & 50549 & 54495 & 226602 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Computed as (fiscal deficit \% of GSDP / 100) x that year's GSDP; see the GSDP table in Section 4.5.
-
-\begin{table}[H]
-\centering
-\caption{Gross fiscal deficit, per cent of GSDP, by state and fiscal year. This is the ratio used as a regressor in Sections 5-6.}
-\label{tab:2}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
-\midrule
-Maharashtra & 2.4 & 1.9 & 1.6 & 1.9 & 2.2 & 2.00 \\
-Uttar Pradesh & -0.7 & 3.0 & 1.6 & 2.9 & 3.2 & 2.00 \\
-Telangana & 3.4 & 5.0 & 3.8 & 2.5 & 3.4 & 3.62 \\
-Gujarat & 1.8 & 2.3 & 0.6 & 0.9 & 1.2 & 1.36 \\
-Karnataka & 2.4 & 3.3 & 2.4 & 2.0 & 2.5 & 2.52 \\
-Jharkhand & 2.6 & 4.5 & 0.0 & 1.1 & 1.4 & 1.92 \\
-Tamil Nadu & 3.5 & 5.3 & 3.7 & 3.6 & 3.6 & 3.94 \\
-Haryana & 4.2 & 3.5 & 2.8 & 3.3 & 2.9 & 3.34 \\
-Rajasthan & 3.8 & 5.4 & 3.5 & 3.7 & 4.4 & 4.16 \\
-West Bengal & 3.2 & 3.5 & 3.3 & 3.3 & 3.3 & 3.32 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Source: FC-16 Report Vol II Annexure 5.1 (States' Finance Accounts - AUDITED ACTUALS).
+The rupee amounts and the percent-of-GSDP ratios are reported in Appendix A, Tables 1 and 2.
 
 The amount table gives the underlying rupee value of each state's annual deficit. The ratio table scales that amount by GSDP, so that a small state and a large one can be compared on a common footing, and that is why every regression in this paper uses the ratio rather than the amount as its regressor. The figure below plots the ratio year on year for all ten states, one coloured line each, so that a state's trajectory can be read directly instead of only its five-year average. Two properties of these rupee tables should be read alongside them. They are derived, not reported: FC-16's Chapter 5 annexures publish these series only as a share of GSDP, so every rupee figure here is the published ratio multiplied by the GSDP of Table 12. A ratio carried to one decimal place implies a rounding band of about a twentieth of a percentage point, which for Maharashtra is roughly two thousand crore, so the five-figure precision shown is a presentational artefact and the amounts should not be read to the crore. The second property is more reassuring than it may appear: FC-16 states its own denominator as MoSPI's comparable GSDP estimates on the 2011-12 series, which is the series reported in Table 12, so the numerator and denominator here come from the same vintage even though the multiplication is ours. The state-budget-document comparison in Section 4.2 concerns a different vintage again and does not bear on this one.
 
@@ -228,59 +176,7 @@ The amount table gives the underlying rupee value of each state's annual deficit
 \label{fig:1}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\caption{Outstanding liabilities (debt), Rupees crore, by state and fiscal year.}
-\label{tab:3}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
-\midrule
-Maharashtra & 486195 & 540405 & 584751 & 640912 & 730052 & 2982315 \\
-Uttar Pradesh & 503230 & 559266 & 614412 & 666110 & 784934 & 3127952 \\
-Telangana & 237525 & 281987 & 318120 & 354186 & 399081 & 1590899 \\
-Gujarat & 370316 & 416954 & 422598 & 471528 & 499716 & 2181112 \\
-Karnataka & 319928 & 385752 & 441116 & 494860 & 577936 & 2219592 \\
-Jharkhand & 94331 & 107405 & 109445 & 115202 & 123394 & 549777 \\
-Tamil Nadu & 430546 & 554311 & 623822 & 706053 & 804000 & 3118732 \\
-Haryana & 219216 & 244248 & 266752 & 303103 & 331081 & 1364400 \\
-Rajasthan & 358000 & 409196 & 456490 & 487486 & 576652 & 2287824 \\
-West Bengal & 437446 & 485265 & 523705 & 585148 & 632476 & 2664040 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Computed as (debt \% of GSDP / 100) x that year's GSDP.
-
-\begin{table}[H]
-\centering
-\caption{Outstanding liabilities (debt), per cent of GSDP, by state and fiscal year. This is the ratio used as a regressor in Sections 5-6.}
-\label{tab:4}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
-\midrule
-Maharashtra & 18.3 & 20.7 & 18.6 & 17.6 & 18.0 & 18.64 \\
-Uttar Pradesh & 29.6 & 34.0 & 31.1 & 29.5 & 29.7 & 30.78 \\
-Telangana & 25.0 & 29.9 & 28.3 & 27.0 & 27.3 & 27.50 \\
-Gujarat & 22.9 & 25.8 & 22.0 & 21.4 & 20.6 & 22.54 \\
-Karnataka & 19.8 & 23.5 & 22.3 & 21.8 & 22.6 & 22.00 \\
-Jharkhand & 30.4 & 36.2 & 29.1 & 27.6 & 26.5 & 29.96 \\
-Tamil Nadu & 24.7 & 31.0 & 30.1 & 29.5 & 29.9 & 29.04 \\
-Haryana & 29.7 & 33.5 & 30.7 & 30.8 & 30.5 & 31.04 \\
-Rajasthan & 35.8 & 40.2 & 38.2 & 35.9 & 37.9 & 37.60 \\
-West Bengal & 37.1 & 42.5 & 39.4 & 38.2 & 38.3 & 39.10 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Source: FC-16 Report Vol II Annexure 5.3 (States' Finance Accounts - AUDITED ACTUALS).
+The corresponding debt series, in rupee amounts and as a percentage of GSDP, is reported in Appendix A, Tables 3 and 4.
 
 As with fiscal deficit, the figure below plots the debt ratio year-on-year for all ten states.
 
@@ -300,59 +196,9 @@ As with fiscal deficit, the figure below plots the debt ratio year-on-year for a
 
 \subsection{Own tax revenue, capital expenditure and revenue deficit, year-wise}
 
-Own tax revenue captures how much a state raises on its own account rather than receiving from the centre. Capital expenditure captures spending that adds to the asset base. Revenue deficit, which is what remains when revenue expenditure runs ahead of revenue receipts, is carried here as an auxiliary series only, with a negative entry denoting a surplus; it is not one of the four regressors, but capital expenditure is derived from it. As in Section 4.3, each indicator appears first as a rupee amount and then as the percent-of-GSDP ratio the regressions use, followed by its year-wise trend chart.
+Own tax revenue captures how much a state raises on its own account rather than receiving from the centre. Capital expenditure captures spending that adds to the asset base. Revenue deficit, which is what remains when revenue expenditure runs ahead of revenue receipts, is carried here as an auxiliary series only, with a negative entry denoting a surplus; it is not one of the four regressors, but capital expenditure is derived from it. As in Section 4.3, each indicator appears in Appendix A first as a rupee amount and then as the percent-of-GSDP ratio the regressions use; the year-wise trend charts follow here.
 
-\begin{table}[H]
-\centering
-\caption{Own tax revenue, Rupees crore, by state and fiscal year.}
-\label{tab:5}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
-\midrule
-Maharashtra & 191290 & 164471 & 223211 & 280399 & 300133 & 1159504 \\
-Uttar Pradesh & 122407 & 120078 & 152121 & 178382 & 200859 & 773847 \\
-Telangana & 68407 & 67903 & 92176 & 107568 & 112561 & 448615 \\
-Gujarat & 92175 & 84037 & 115254 & 149831 & 162529 & 603826 \\
-Karnataka & 101795 & 96848 & 120664 & 140740 & 161106 & 621153 \\
-Jharkhand & 16756 & 16912 & 21438 & 25461 & 27938 & 108505 \\
-Tamil Nadu & 109815 & 114438 & 128495 & 157964 & 177472 & 688184 \\
-Haryana & 43548 & 43017 & 53872 & 64951 & 73815 & 279203 \\
-Rajasthan & 60000 & 61074 & 75285 & 85548 & 97377 & 379284 \\
-West Bengal & 61313 & 60515 & 70448 & 85781 & 89174 & 367231 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Own tax revenue, per cent of GSDP, by state and fiscal year. This is the ratio used as a regressor in Sections 5-6.}
-\label{tab:6}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
-\midrule
-Maharashtra & 7.2 & 6.3 & 7.1 & 7.7 & 7.4 & 7.14 \\
-Uttar Pradesh & 7.2 & 7.3 & 7.7 & 7.9 & 7.6 & 7.54 \\
-Telangana & 7.2 & 7.2 & 8.2 & 8.2 & 7.7 & 7.70 \\
-Gujarat & 5.7 & 5.2 & 6.0 & 6.8 & 6.7 & 6.08 \\
-Karnataka & 6.3 & 5.9 & 6.1 & 6.2 & 6.3 & 6.16 \\
-Jharkhand & 5.4 & 5.7 & 5.7 & 6.1 & 6.0 & 5.78 \\
-Tamil Nadu & 6.3 & 6.4 & 6.2 & 6.6 & 6.6 & 6.42 \\
-Haryana & 5.9 & 5.9 & 6.2 & 6.6 & 6.8 & 6.28 \\
-Rajasthan & 6.0 & 6.0 & 6.3 & 6.3 & 6.4 & 6.20 \\
-West Bengal & 5.2 & 5.3 & 5.3 & 5.6 & 5.4 & 5.36 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Source: FC-16 Report Vol II Annexure 5.5 (States' Finance Accounts - AUDITED ACTUALS).
+Own tax revenue is reported in Appendix A, Tables 5 and 6.
 
 \begin{figure}[H]
 \centering
@@ -361,57 +207,7 @@ Source: FC-16 Report Vol II Annexure 5.5 (States' Finance Accounts - AUDITED ACT
 \label{fig:4}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\caption{Capital expenditure (derived), Rupees crore, by state and fiscal year.}
-\label{tab:7}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
-\midrule
-Maharashtra & 45166 & 20885 & 47157 & 65548 & 77061 & 255817 \\
-Uttar Pradesh & 56103 & 52637 & 75073 & 103868 & 121572 & 409253 \\
-Telangana & 25653 & 27350 & 38219 & 39354 & 51164 & 181740 \\
-Gujarat & 30725 & 21009 & 34576 & 44068 & 70348 & 200726 \\
-Karnataka & 40395 & 47604 & 51431 & 59020 & 53702 & 252152 \\
-Jharkhand & 9930 & 11868 & 9402 & 18366 & 17694 & 67260 \\
-Tamil Nadu & 24403 & 33974 & 37305 & 47868 & 48401 & 191951 \\
-Haryana & 14024 & 7291 & 11296 & 14762 & 19539 & 66912 \\
-Rajasthan & 1000 & 15268 & 22705 & 19011 & 27387 & 85371 \\
-West Bengal & 17686 & 14843 & 18609 & 22977 & 28073 & 102188 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Capital expenditure (derived), per cent of GSDP, by state and fiscal year, with cross-check capital-outlay figures for FY 2022-23 (actuals) and FY 2023-24 (revised estimates). This ratio is the regressor used in Sections 5-6.}
-\label{tab:8}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average & Capital outlay FY2022-23 (actuals) & Capital outlay FY2023-24 (revised est.) \\
-\midrule
-Maharashtra & 1.7 & 0.8 & 1.5 & 1.8 & 1.9 & 1.54 & 1.69 & 2.12 \\
-Uttar Pradesh & 3.3 & 3.2 & 3.8 & 4.6 & 4.6 & 3.90 & 4.12 & 6.19 \\
-Telangana & 2.7 & 2.9 & 3.4 & 3.0 & 3.5 & 3.10 & 1.37 & 3.02 \\
-Gujarat & 1.9 & 1.3 & 1.8 & 2.0 & 2.9 & 1.98 & 1.59 & 2.38 \\
-Karnataka & 2.5 & 2.9 & 2.6 & 2.6 & 2.1 & 2.54 & 2.63 & 2.0 \\
-Jharkhand & 3.2 & 4.0 & 2.5 & 4.4 & 3.8 & 3.58 & 3.56 & 5.06 \\
-Tamil Nadu & 1.4 & 1.9 & 1.8 & 2.0 & 1.8 & 1.78 & 1.67 & 1.56 \\
-Haryana & 1.9 & 1.0 & 1.3 & 1.5 & 1.8 & 1.50 & 1.19 & 1.32 \\
-Rajasthan & 0.1 & 1.5 & 1.9 & 1.4 & 1.8 & 1.34 & 1.46 & 2.28 \\
-West Bengal & 1.5 & 1.3 & 1.4 & 1.5 & 1.7 & 1.48 & 1.44 & 1.8 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Derived: GFD minus RD (FC-16 Annex 5.1 - 5.2); includes net lending. Cross-check cols = exact capital outlay from state budget docs (Forum for State Studies) columns show exact capital outlay compiled from state budget documents, for comparison against the derived series.
+Capital expenditure, and the cross-check against exact capital outlay discussed in Section 4.2, is reported in Appendix A, Tables 7 and 8.
 
 \begin{figure}[H]
 \centering
@@ -420,90 +216,15 @@ Derived: GFD minus RD (FC-16 Annex 5.1 - 5.2); includes net lending. Cross-check
 \label{fig:5}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\caption{Revenue deficit, Rupees crore, by state and fiscal year.}
-\label{tab:9}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
-\midrule
-Maharashtra & 18598 & 28717 & 3144 & 3642 & 12168 & 66269 \\
-Uttar Pradesh & -68004 & -3290 & -43463 & -38386 & -37000 & -190143 \\
-Telangana & 6651 & 19805 & 4496 & -6559 & -1462 & 22931 \\
-Gujarat & -1617 & 16161 & -23051 & -24237 & -41239 & -73983 \\
-Karnataka & -1616 & 6566 & -3956 & -13620 & 10229 & -2397 \\
-Jharkhand & -1862 & 1484 & -9402 & -13774 & -11175 & -34729 \\
-Tamil Nadu & 36605 & 60795 & 39378 & 38294 & 48401 & 223473 \\
-Haryana & 16976 & 18228 & 13034 & 17714 & 11941 & 77893 \\
-Rajasthan & 37000 & 39698 & 19120 & 31232 & 39559 & 166609 \\
-West Bengal & 20045 & 25120 & 25255 & 27572 & 26422 & 124414 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Revenue deficit, per cent of GSDP, by state and fiscal year (negative = revenue surplus). Auxiliary variable; not used directly as a regressor, but is the series capital expenditure is derived from.}
-\label{tab:10}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
-\midrule
-Maharashtra & 0.7 & 1.1 & 0.1 & 0.1 & 0.3 & 0.46 \\
-Uttar Pradesh & -4.0 & -0.2 & -2.2 & -1.7 & -1.4 & -1.90 \\
-Telangana & 0.7 & 2.1 & 0.4 & -0.5 & -0.1 & 0.52 \\
-Gujarat & -0.1 & 1.0 & -1.2 & -1.1 & -1.7 & -0.62 \\
-Karnataka & -0.1 & 0.4 & -0.2 & -0.6 & 0.4 & -0.02 \\
-Jharkhand & -0.6 & 0.5 & -2.5 & -3.3 & -2.4 & -1.66 \\
-Tamil Nadu & 2.1 & 3.4 & 1.9 & 1.6 & 1.8 & 2.16 \\
-Haryana & 2.3 & 2.5 & 1.5 & 1.8 & 1.1 & 1.84 \\
-Rajasthan & 3.7 & 3.9 & 1.6 & 2.3 & 2.6 & 2.82 \\
-West Bengal & 1.7 & 2.2 & 1.9 & 1.8 & 1.6 & 1.84 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Source: FC-16 Report Vol II Annexure 5.2 (negative = revenue surplus).
+Revenue deficit is reported in Appendix A, Tables 9 and 10.
 
 \subsection{FDI and GSDP, year-wise}
 
 FDI equity inflows by state are DPIIT's (2024) state-wise series, in Rupees crore, reported for the fiscal year in which the inflow was recorded. GSDP is the Ministry of Statistics and Programme Implementation's (MoSPI, 2024) state-wise series on the comparable 2011-12 base. GSDP growth is computed year-on-year from this series. The MoSPI series used here is at current prices, so the growth rates in Table 13 and the dependent variable of Model 2 are nominal rather than real. This matters for how the post-pandemic path is read: a large part of the roughly nineteen per cent recorded for FY 2021-22 is a deflator effect rather than real output, which is one reason Section 6.5 treats the common time path as something to absorb rather than to interpret. It also means the comparison with Trivedi and Rajmal (2011) and Panda and Sahay (2022) in Section 8 is not like for like, since both model real growth.
 
-\begin{table}[H]
-\centering
-\caption{FDI equity inflows by state and fiscal year, Rupees crore.}
-\label{tab:11}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 (Oct-Mar) & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Cumulative Oct2019-Mar2024 \\
-\midrule
-Maharashtra & 52073 & 119734 & 114964 & 118422 & 125101 & 532428.74 \\
-Uttar Pradesh & NA (combined with FY2020-21; see note) & NA (combined with FY2019-20; see note) & 1619 & 3373 & 2762 & 12615.44 \\
-Telangana & 4865 & 8618 & 11964 & 10319 & 25094 & 60860.43 \\
-Gujarat & 18964 & 162830 & 20169 & 37059 & 60600 & 299624.37 \\
-Karnataka & 30746 & 56884 & 163795 & 83628 & 54427 & 389483.39 \\
-Jharkhand & 13208 & 5993 & 48 & 44 & 90 & 19382.14 \\
-Tamil Nadu & 7230 & 17208 & 22396 & 17247 & 20157 & 84243.09 \\
-Haryana & 5198 & 12559 & 20971 & 20735 & 15797 & 75269.59 \\
-Rajasthan & 1347 & 2015 & 5277 & 7218 & 2195 & 18052.36 \\
-West Bengal & 1363 & 3115 & 3195 & 3217 & 1501 & 12398.46 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
+The FDI series is reported in Appendix A, Table 11, together with the DPIIT source note on Uttar Pradesh's left-censored years and on the published cumulative column.
 
-Source: DPIIT (2024). Uttar Pradesh's DPIIT state-wise reporting begins only in FY 2021-22; its FY 2019-20 and FY 2020-21 cells are not available separately and are treated as missing, not zero, throughout this paper. The cumulative column as originally published by DPIIT includes an unattributed combined figure for Uttar Pradesh's first two years and should not be summed against the state-year columns. Maharashtra's published cumulative figure (532,428.74) likewise exceeds the sum of its five state-year cells (530,294) by 2,134.74 crore, a difference DPIIT does not explain and which is more than two hundred times the largest rounding gap in any other state. The analysis panel, Table 18 and every estimate reported in this paper use the summed state-year series, not the published cumulative column.
-
-The first figure below totals this table by state; the second plots it year by year on a log scale so that both large states (Maharashtra, Karnataka) and small ones (Rajasthan, West Bengal) remain legible on the same axis.
+The first figure below totals that table by state; the second plots it year by year on a log scale so that both large states (Maharashtra, Karnataka) and small ones (Rajasthan, West Bengal) remain legible on the same axis.
 
 \begin{figure}[H]
 \centering
@@ -519,57 +240,7 @@ The first figure below totals this table by state; the second plots it year by y
 \label{fig:7}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\caption{GSDP by state and fiscal year, Rupees crore.}
-\label{tab:12}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & 2018-19 & 2019-20 & 2020-21 & 2021-22 & 2022-23 & 2023-24 \\
-\midrule
-Maharashtra & 2528854 & 2656806 & 2610651 & 3143821 & 3641543 & 4055847 \\
-Uttar Pradesh & 1582200 & 1700100 & 1644900 & 1975600 & 2258000 & 2642877 \\
-Telangana & 857400 & 950100 & 943100 & 1124100 & 1311800 & 1461836 \\
-Gujarat & 1492200 & 1617100 & 1616100 & 1920900 & 2203400 & 2425804 \\
-Karnataka & 1479400 & 1615800 & 1641500 & 1978100 & 2270000 & 2557241 \\
-Jharkhand & 305700 & 310300 & 296700 & 376100 & 417400 & 465638 \\
-Tamil Nadu & 1630200 & 1743100 & 1788100 & 2072500 & 2393400 & 2688963 \\
-Haryana & 698900 & 738100 & 729100 & 868900 & 984100 & 1085510 \\
-Rajasthan & 911500 & 1000000 & 1017900 & 1195000 & 1357900 & 1521510 \\
-West Bengal & 1102100 & 1179100 & 1141800 & 1329200 & 1531800 & 1651374 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-Source: MoSPI (2024), 2011-12 comparable series.
-
-\begin{table}[H]
-\centering
-\caption{GSDP growth, per cent per annum, by state and fiscal year, computed year-on-year from the GSDP table above. This is the dependent variable in Model 2 (Section 5.1).}
-\label{tab:13}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & 5-yr Avg \\
-\midrule
-Maharashtra & 5.06 & -1.74 & 20.42 & 15.83 & 11.38 & 10.19 \\
-Uttar Pradesh & 7.45 & -3.25 & 20.10 & 14.29 & 17.05 & 11.13 \\
-Telangana & 10.81 & -0.74 & 19.19 & 16.70 & 11.44 & 11.48 \\
-Gujarat & 8.37 & -0.06 & 18.86 & 14.71 & 10.09 & 10.39 \\
-Karnataka & 9.22 & 1.59 & 20.51 & 14.76 & 12.65 & 11.75 \\
-Jharkhand & 1.50 & -4.38 & 26.76 & 10.98 & 11.56 & 9.28 \\
-Tamil Nadu & 6.93 & 2.58 & 15.91 & 15.48 & 12.35 & 10.65 \\
-Haryana & 5.61 & -1.22 & 19.17 & 13.26 & 10.30 & 9.42 \\
-Rajasthan & 9.71 & 1.79 & 17.40 & 13.63 & 12.05 & 10.92 \\
-West Bengal & 6.99 & -3.16 & 16.41 & 15.24 & 7.81 & 8.66 \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
+GSDP and the year-on-year growth rates derived from it are reported in Appendix A, Tables 12 and 13.
 
 \begin{figure}[H]
 \centering
@@ -582,35 +253,12 @@ West Bengal & 6.99 & -3.16 & 16.41 & 15.24 & 7.81 & 8.66 \\
 
 Two controls enter only the pooled cross-state specification of Section 5.1, since the fixed-effects model already absorbs every time-invariant state characteristic by construction. They are the literacy rate and the urbanisation rate as recorded in the Primary Census Abstract of Census 2011 (Office of the Registrar General and Census Commissioner, India, 2011), which remains the latest full enumeration available.
 
-\begin{table}[H]
-\centering
-\caption{Literacy and urbanisation rate by state, Census 2011.}
-\label{tab:14}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{@{}lrrl@{}}
-\toprule
-State & Literacy\_2011\_pct & Urbanization\_2011\_pct & Source \\
-\midrule
-Maharashtra & 82.3 & 45.2 & Census 2011 PCA \\
-Uttar Pradesh & 67.7 & 22.3 & Census 2011 PCA \\
-Telangana & 66.5 & 38.9 & Census 2011 PCA \\
-Gujarat & 78 & 42.6 & Census 2011 PCA \\
-Karnataka & 75.4 & 38.6 & Census 2011 PCA \\
-Jharkhand & 66.4 & 24.1 & Census 2011 PCA \\
-Tamil Nadu & 80.1 & 48.4 & Census 2011 PCA \\
-Haryana & 75.6 & 34.9 & Census 2011 PCA \\
-Rajasthan & 66.1 & 24.9 & Census 2011 PCA \\
-West Bengal & 76.3 & 31.9 & Census 2011 PCA \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
+Both controls are reported in Appendix A, Table 14.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/fig09.png}
-\caption{Literacy and urbanisation rate by state, Census 2011. States are listed in the same order as the fiscal tables above for ease of comparison.}
+\caption{Literacy and urbanisation rate by state, Census 2011. States are listed in the same order as the fiscal tables of Appendix A for ease of comparison.}
 \label{fig:9}
 \end{figure}
 
@@ -620,6 +268,7 @@ The composite fiscal discipline ranking reported in Section 6.2 is built from th
 
 As a worked example, take Gujarat in FY 2022-23. Its fiscal deficit that year was 0.9 per cent of GSDP, the lowest of the ten states, giving it rank 1 on that indicator. Its debt was 21.4 per cent of GSDP, the second-lowest, giving rank 2. Its own tax revenue was 6.8 per cent of GSDP, the fourth-highest, giving rank 4. Its capital expenditure was 2.0 per cent of GSDP, tied for the fifth-highest with Tamil Nadu, giving both states a shared rank of 5.5. Gujarat's composite score for FY 2022-23 is therefore (1 + 2 + 4 + 5.5) / 4 = 3.125, the lowest (best) composite score of any state that year, which is why Gujarat is shown ranked first for FY 2022-23 in the year-wise ranking table and heatmap figure below.
 
+\setcounter{table}{14}
 \begin{table}[H]
 \centering
 \caption{Composite fiscal discipline ranking, five-year state averages (1 = most disciplined). Each state's rank on each of the four indicators (Rank columns) is computed from its own five-year average of that indicator, then the four ranks are averaged into the Composite Score column, and states are ordered by that score.}
@@ -1691,5 +1340,384 @@ Wooldridge, J. M. (2010). Econometric analysis of cross section and panel data (
 
 \hangindent=0.5in\hangafter=1
 Zou, H., \& Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society, Series B, 67(2), 301-320. \url{https://doi.org/10.1111/j.1467-9868.2005.00503.x}
+
+
+\FloatBarrier
+\section*{Appendix A: Data tables}
+\setcounter{table}{0}
+
+Tables 1 to 14 below are the source data for every variable used in this paper.
+They are grouped here rather than in Section 4 so that the main text carries the
+argument and not the arithmetic; each is referenced from the section of Section 4
+that describes it, and the table numbers are the same ones used throughout the
+text.
+
+\begin{table}[H]
+\centering
+\caption{Gross fiscal deficit, Rupees crore, by state and fiscal year.}
+\label{tab:1}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
+\midrule
+Maharashtra & 63763 & 49602 & 50301 & 69189 & 89229 & 322084 \\
+Uttar Pradesh & -11901 & 49347 & 31610 & 65482 & 84572 & 219110 \\
+Telangana & 32303 & 47155 & 42716 & 32795 & 49702 & 204671 \\
+Gujarat & 29108 & 37170 & 11525 & 19831 & 29110 & 126744 \\
+Karnataka & 38779 & 54170 & 47474 & 45400 & 63931 & 249754 \\
+Jharkhand & 8068 & 13352 & 0 & 4591 & 6519 & 32530 \\
+Tamil Nadu & 61008 & 94769 & 76682 & 86162 & 96803 & 415424 \\
+Haryana & 31000 & 25518 & 24329 & 32475 & 31480 & 144802 \\
+Rajasthan & 38000 & 54967 & 41825 & 50242 & 66946 & 251980 \\
+West Bengal & 37731 & 39963 & 43864 & 50549 & 54495 & 226602 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Computed as (fiscal deficit \% of GSDP / 100) x that year's GSDP; see the GSDP table in Section 4.5.
+
+\begin{table}[H]
+\centering
+\caption{Gross fiscal deficit, per cent of GSDP, by state and fiscal year. This is the ratio used as a regressor in Sections 5-6.}
+\label{tab:2}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
+\midrule
+Maharashtra & 2.4 & 1.9 & 1.6 & 1.9 & 2.2 & 2.00 \\
+Uttar Pradesh & -0.7 & 3.0 & 1.6 & 2.9 & 3.2 & 2.00 \\
+Telangana & 3.4 & 5.0 & 3.8 & 2.5 & 3.4 & 3.62 \\
+Gujarat & 1.8 & 2.3 & 0.6 & 0.9 & 1.2 & 1.36 \\
+Karnataka & 2.4 & 3.3 & 2.4 & 2.0 & 2.5 & 2.52 \\
+Jharkhand & 2.6 & 4.5 & 0.0 & 1.1 & 1.4 & 1.92 \\
+Tamil Nadu & 3.5 & 5.3 & 3.7 & 3.6 & 3.6 & 3.94 \\
+Haryana & 4.2 & 3.5 & 2.8 & 3.3 & 2.9 & 3.34 \\
+Rajasthan & 3.8 & 5.4 & 3.5 & 3.7 & 4.4 & 4.16 \\
+West Bengal & 3.2 & 3.5 & 3.3 & 3.3 & 3.3 & 3.32 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Source: FC-16 Report Vol II Annexure 5.1 (States' Finance Accounts - AUDITED ACTUALS).
+
+\begin{table}[H]
+\centering
+\caption{Outstanding liabilities (debt), Rupees crore, by state and fiscal year.}
+\label{tab:3}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
+\midrule
+Maharashtra & 486195 & 540405 & 584751 & 640912 & 730052 & 2982315 \\
+Uttar Pradesh & 503230 & 559266 & 614412 & 666110 & 784934 & 3127952 \\
+Telangana & 237525 & 281987 & 318120 & 354186 & 399081 & 1590899 \\
+Gujarat & 370316 & 416954 & 422598 & 471528 & 499716 & 2181112 \\
+Karnataka & 319928 & 385752 & 441116 & 494860 & 577936 & 2219592 \\
+Jharkhand & 94331 & 107405 & 109445 & 115202 & 123394 & 549777 \\
+Tamil Nadu & 430546 & 554311 & 623822 & 706053 & 804000 & 3118732 \\
+Haryana & 219216 & 244248 & 266752 & 303103 & 331081 & 1364400 \\
+Rajasthan & 358000 & 409196 & 456490 & 487486 & 576652 & 2287824 \\
+West Bengal & 437446 & 485265 & 523705 & 585148 & 632476 & 2664040 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Computed as (debt \% of GSDP / 100) x that year's GSDP.
+
+\begin{table}[H]
+\centering
+\caption{Outstanding liabilities (debt), per cent of GSDP, by state and fiscal year. This is the ratio used as a regressor in Sections 5-6.}
+\label{tab:4}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
+\midrule
+Maharashtra & 18.3 & 20.7 & 18.6 & 17.6 & 18.0 & 18.64 \\
+Uttar Pradesh & 29.6 & 34.0 & 31.1 & 29.5 & 29.7 & 30.78 \\
+Telangana & 25.0 & 29.9 & 28.3 & 27.0 & 27.3 & 27.50 \\
+Gujarat & 22.9 & 25.8 & 22.0 & 21.4 & 20.6 & 22.54 \\
+Karnataka & 19.8 & 23.5 & 22.3 & 21.8 & 22.6 & 22.00 \\
+Jharkhand & 30.4 & 36.2 & 29.1 & 27.6 & 26.5 & 29.96 \\
+Tamil Nadu & 24.7 & 31.0 & 30.1 & 29.5 & 29.9 & 29.04 \\
+Haryana & 29.7 & 33.5 & 30.7 & 30.8 & 30.5 & 31.04 \\
+Rajasthan & 35.8 & 40.2 & 38.2 & 35.9 & 37.9 & 37.60 \\
+West Bengal & 37.1 & 42.5 & 39.4 & 38.2 & 38.3 & 39.10 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Source: FC-16 Report Vol II Annexure 5.3 (States' Finance Accounts - AUDITED ACTUALS).
+
+\begin{table}[H]
+\centering
+\caption{Own tax revenue, Rupees crore, by state and fiscal year.}
+\label{tab:5}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
+\midrule
+Maharashtra & 191290 & 164471 & 223211 & 280399 & 300133 & 1159504 \\
+Uttar Pradesh & 122407 & 120078 & 152121 & 178382 & 200859 & 773847 \\
+Telangana & 68407 & 67903 & 92176 & 107568 & 112561 & 448615 \\
+Gujarat & 92175 & 84037 & 115254 & 149831 & 162529 & 603826 \\
+Karnataka & 101795 & 96848 & 120664 & 140740 & 161106 & 621153 \\
+Jharkhand & 16756 & 16912 & 21438 & 25461 & 27938 & 108505 \\
+Tamil Nadu & 109815 & 114438 & 128495 & 157964 & 177472 & 688184 \\
+Haryana & 43548 & 43017 & 53872 & 64951 & 73815 & 279203 \\
+Rajasthan & 60000 & 61074 & 75285 & 85548 & 97377 & 379284 \\
+West Bengal & 61313 & 60515 & 70448 & 85781 & 89174 & 367231 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Own tax revenue, per cent of GSDP, by state and fiscal year. This is the ratio used as a regressor in Sections 5-6.}
+\label{tab:6}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
+\midrule
+Maharashtra & 7.2 & 6.3 & 7.1 & 7.7 & 7.4 & 7.14 \\
+Uttar Pradesh & 7.2 & 7.3 & 7.7 & 7.9 & 7.6 & 7.54 \\
+Telangana & 7.2 & 7.2 & 8.2 & 8.2 & 7.7 & 7.70 \\
+Gujarat & 5.7 & 5.2 & 6.0 & 6.8 & 6.7 & 6.08 \\
+Karnataka & 6.3 & 5.9 & 6.1 & 6.2 & 6.3 & 6.16 \\
+Jharkhand & 5.4 & 5.7 & 5.7 & 6.1 & 6.0 & 5.78 \\
+Tamil Nadu & 6.3 & 6.4 & 6.2 & 6.6 & 6.6 & 6.42 \\
+Haryana & 5.9 & 5.9 & 6.2 & 6.6 & 6.8 & 6.28 \\
+Rajasthan & 6.0 & 6.0 & 6.3 & 6.3 & 6.4 & 6.20 \\
+West Bengal & 5.2 & 5.3 & 5.3 & 5.6 & 5.4 & 5.36 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Source: FC-16 Report Vol II Annexure 5.5 (States' Finance Accounts - AUDITED ACTUALS).
+
+\begin{table}[H]
+\centering
+\caption{Capital expenditure (derived), Rupees crore, by state and fiscal year.}
+\label{tab:7}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
+\midrule
+Maharashtra & 45166 & 20885 & 47157 & 65548 & 77061 & 255817 \\
+Uttar Pradesh & 56103 & 52637 & 75073 & 103868 & 121572 & 409253 \\
+Telangana & 25653 & 27350 & 38219 & 39354 & 51164 & 181740 \\
+Gujarat & 30725 & 21009 & 34576 & 44068 & 70348 & 200726 \\
+Karnataka & 40395 & 47604 & 51431 & 59020 & 53702 & 252152 \\
+Jharkhand & 9930 & 11868 & 9402 & 18366 & 17694 & 67260 \\
+Tamil Nadu & 24403 & 33974 & 37305 & 47868 & 48401 & 191951 \\
+Haryana & 14024 & 7291 & 11296 & 14762 & 19539 & 66912 \\
+Rajasthan & 1000 & 15268 & 22705 & 19011 & 27387 & 85371 \\
+West Bengal & 17686 & 14843 & 18609 & 22977 & 28073 & 102188 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Capital expenditure (derived), per cent of GSDP, by state and fiscal year, with cross-check capital-outlay figures for FY 2022-23 (actuals) and FY 2023-24 (revised estimates). This ratio is the regressor used in Sections 5-6.}
+\label{tab:8}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average & Capital outlay FY2022-23 (actuals) & Capital outlay FY2023-24 (revised est.) \\
+\midrule
+Maharashtra & 1.7 & 0.8 & 1.5 & 1.8 & 1.9 & 1.54 & 1.69 & 2.12 \\
+Uttar Pradesh & 3.3 & 3.2 & 3.8 & 4.6 & 4.6 & 3.90 & 4.12 & 6.19 \\
+Telangana & 2.7 & 2.9 & 3.4 & 3.0 & 3.5 & 3.10 & 1.37 & 3.02 \\
+Gujarat & 1.9 & 1.3 & 1.8 & 2.0 & 2.9 & 1.98 & 1.59 & 2.38 \\
+Karnataka & 2.5 & 2.9 & 2.6 & 2.6 & 2.1 & 2.54 & 2.63 & 2.0 \\
+Jharkhand & 3.2 & 4.0 & 2.5 & 4.4 & 3.8 & 3.58 & 3.56 & 5.06 \\
+Tamil Nadu & 1.4 & 1.9 & 1.8 & 2.0 & 1.8 & 1.78 & 1.67 & 1.56 \\
+Haryana & 1.9 & 1.0 & 1.3 & 1.5 & 1.8 & 1.50 & 1.19 & 1.32 \\
+Rajasthan & 0.1 & 1.5 & 1.9 & 1.4 & 1.8 & 1.34 & 1.46 & 2.28 \\
+West Bengal & 1.5 & 1.3 & 1.4 & 1.5 & 1.7 & 1.48 & 1.44 & 1.8 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Derived: GFD minus RD (FC-16 Annex 5.1 - 5.2); includes net lending. Cross-check cols = exact capital outlay from state budget docs (Forum for State Studies) columns show exact capital outlay compiled from state budget documents, for comparison against the derived series.
+
+\begin{table}[H]
+\centering
+\caption{Revenue deficit, Rupees crore, by state and fiscal year.}
+\label{tab:9}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year total \\
+\midrule
+Maharashtra & 18598 & 28717 & 3144 & 3642 & 12168 & 66269 \\
+Uttar Pradesh & -68004 & -3290 & -43463 & -38386 & -37000 & -190143 \\
+Telangana & 6651 & 19805 & 4496 & -6559 & -1462 & 22931 \\
+Gujarat & -1617 & 16161 & -23051 & -24237 & -41239 & -73983 \\
+Karnataka & -1616 & 6566 & -3956 & -13620 & 10229 & -2397 \\
+Jharkhand & -1862 & 1484 & -9402 & -13774 & -11175 & -34729 \\
+Tamil Nadu & 36605 & 60795 & 39378 & 38294 & 48401 & 223473 \\
+Haryana & 16976 & 18228 & 13034 & 17714 & 11941 & 77893 \\
+Rajasthan & 37000 & 39698 & 19120 & 31232 & 39559 & 166609 \\
+West Bengal & 20045 & 25120 & 25255 & 27572 & 26422 & 124414 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Revenue deficit, per cent of GSDP, by state and fiscal year (negative = revenue surplus). Auxiliary variable; not used directly as a regressor, but is the series capital expenditure is derived from.}
+\label{tab:10}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Five-year average \\
+\midrule
+Maharashtra & 0.7 & 1.1 & 0.1 & 0.1 & 0.3 & 0.46 \\
+Uttar Pradesh & -4.0 & -0.2 & -2.2 & -1.7 & -1.4 & -1.90 \\
+Telangana & 0.7 & 2.1 & 0.4 & -0.5 & -0.1 & 0.52 \\
+Gujarat & -0.1 & 1.0 & -1.2 & -1.1 & -1.7 & -0.62 \\
+Karnataka & -0.1 & 0.4 & -0.2 & -0.6 & 0.4 & -0.02 \\
+Jharkhand & -0.6 & 0.5 & -2.5 & -3.3 & -2.4 & -1.66 \\
+Tamil Nadu & 2.1 & 3.4 & 1.9 & 1.6 & 1.8 & 2.16 \\
+Haryana & 2.3 & 2.5 & 1.5 & 1.8 & 1.1 & 1.84 \\
+Rajasthan & 3.7 & 3.9 & 1.6 & 2.3 & 2.6 & 2.82 \\
+West Bengal & 1.7 & 2.2 & 1.9 & 1.8 & 1.6 & 1.84 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Source: FC-16 Report Vol II Annexure 5.2 (negative = revenue surplus).
+
+\begin{table}[H]
+\centering
+\caption{FDI equity inflows by state and fiscal year, Rupees crore.}
+\label{tab:11}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 (Oct-Mar) & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & Cumulative Oct2019-Mar2024 \\
+\midrule
+Maharashtra & 52073 & 119734 & 114964 & 118422 & 125101 & 532428.74 \\
+Uttar Pradesh & NA (combined with FY2020-21; see note) & NA (combined with FY2019-20; see note) & 1619 & 3373 & 2762 & 12615.44 \\
+Telangana & 4865 & 8618 & 11964 & 10319 & 25094 & 60860.43 \\
+Gujarat & 18964 & 162830 & 20169 & 37059 & 60600 & 299624.37 \\
+Karnataka & 30746 & 56884 & 163795 & 83628 & 54427 & 389483.39 \\
+Jharkhand & 13208 & 5993 & 48 & 44 & 90 & 19382.14 \\
+Tamil Nadu & 7230 & 17208 & 22396 & 17247 & 20157 & 84243.09 \\
+Haryana & 5198 & 12559 & 20971 & 20735 & 15797 & 75269.59 \\
+Rajasthan & 1347 & 2015 & 5277 & 7218 & 2195 & 18052.36 \\
+West Bengal & 1363 & 3115 & 3195 & 3217 & 1501 & 12398.46 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Source: DPIIT (2024). Uttar Pradesh's DPIIT state-wise reporting begins only in FY 2021-22; its FY 2019-20 and FY 2020-21 cells are not available separately and are treated as missing, not zero, throughout this paper. The cumulative column as originally published by DPIIT includes an unattributed combined figure for Uttar Pradesh's first two years and should not be summed against the state-year columns. Maharashtra's published cumulative figure (532,428.74) likewise exceeds the sum of its five state-year cells (530,294) by 2,134.74 crore, a difference DPIIT does not explain and which is more than two hundred times the largest rounding gap in any other state. The analysis panel, Table 18 and every estimate reported in this paper use the summed state-year series, not the published cumulative column.
+
+\begin{table}[H]
+\centering
+\caption{GSDP by state and fiscal year, Rupees crore.}
+\label{tab:12}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & 2018-19 & 2019-20 & 2020-21 & 2021-22 & 2022-23 & 2023-24 \\
+\midrule
+Maharashtra & 2528854 & 2656806 & 2610651 & 3143821 & 3641543 & 4055847 \\
+Uttar Pradesh & 1582200 & 1700100 & 1644900 & 1975600 & 2258000 & 2642877 \\
+Telangana & 857400 & 950100 & 943100 & 1124100 & 1311800 & 1461836 \\
+Gujarat & 1492200 & 1617100 & 1616100 & 1920900 & 2203400 & 2425804 \\
+Karnataka & 1479400 & 1615800 & 1641500 & 1978100 & 2270000 & 2557241 \\
+Jharkhand & 305700 & 310300 & 296700 & 376100 & 417400 & 465638 \\
+Tamil Nadu & 1630200 & 1743100 & 1788100 & 2072500 & 2393400 & 2688963 \\
+Haryana & 698900 & 738100 & 729100 & 868900 & 984100 & 1085510 \\
+Rajasthan & 911500 & 1000000 & 1017900 & 1195000 & 1357900 & 1521510 \\
+West Bengal & 1102100 & 1179100 & 1141800 & 1329200 & 1531800 & 1651374 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Source: MoSPI (2024), 2011-12 comparable series.
+
+\begin{table}[H]
+\centering
+\caption{GSDP growth, per cent per annum, by state and fiscal year, computed year-on-year from the GSDP table above. This is the dependent variable in Model 2 (Section 5.1).}
+\label{tab:13}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+State & FY2019-20 & FY2020-21 & FY2021-22 & FY2022-23 & FY2023-24 & 5-yr Avg \\
+\midrule
+Maharashtra & 5.06 & -1.74 & 20.42 & 15.83 & 11.38 & 10.19 \\
+Uttar Pradesh & 7.45 & -3.25 & 20.10 & 14.29 & 17.05 & 11.13 \\
+Telangana & 10.81 & -0.74 & 19.19 & 16.70 & 11.44 & 11.48 \\
+Gujarat & 8.37 & -0.06 & 18.86 & 14.71 & 10.09 & 10.39 \\
+Karnataka & 9.22 & 1.59 & 20.51 & 14.76 & 12.65 & 11.75 \\
+Jharkhand & 1.50 & -4.38 & 26.76 & 10.98 & 11.56 & 9.28 \\
+Tamil Nadu & 6.93 & 2.58 & 15.91 & 15.48 & 12.35 & 10.65 \\
+Haryana & 5.61 & -1.22 & 19.17 & 13.26 & 10.30 & 9.42 \\
+Rajasthan & 9.71 & 1.79 & 17.40 & 13.63 & 12.05 & 10.92 \\
+West Bengal & 6.99 & -3.16 & 16.41 & 15.24 & 7.81 & 8.66 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Literacy and urbanisation rate by state, Census 2011.}
+\label{tab:14}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+State & Literacy\_2011\_pct & Urbanization\_2011\_pct & Source \\
+\midrule
+Maharashtra & 82.3 & 45.2 & Census 2011 PCA \\
+Uttar Pradesh & 67.7 & 22.3 & Census 2011 PCA \\
+Telangana & 66.5 & 38.9 & Census 2011 PCA \\
+Gujarat & 78 & 42.6 & Census 2011 PCA \\
+Karnataka & 75.4 & 38.6 & Census 2011 PCA \\
+Jharkhand & 66.4 & 24.1 & Census 2011 PCA \\
+Tamil Nadu & 80.1 & 48.4 & Census 2011 PCA \\
+Haryana & 75.6 & 34.9 & Census 2011 PCA \\
+Rajasthan & 66.1 & 24.9 & Census 2011 PCA \\
+West Bengal & 76.3 & 31.9 & Census 2011 PCA \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
 \end{document}
