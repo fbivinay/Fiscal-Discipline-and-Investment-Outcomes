@@ -52,6 +52,9 @@ def main():
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         shutil.copy(MAIN, work / 'main.tex')
+        figures = HERE / 'figures'
+        if figures.is_dir():          # the full build needs them; the prose one does not
+            shutil.copytree(figures, work / 'figures')
         total = pdflatex(work / 'main.tex', work)
 
         (work / 'prose.tex').write_text(strip_prose_only(src), encoding='utf-8')
