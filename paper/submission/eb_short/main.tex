@@ -37,6 +37,7 @@
 \usepackage{titlesec}
 \usepackage{caption}
 \usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 \usepackage[normalem]{ulem}           % \uline breaks across lines
 
@@ -346,6 +347,76 @@ controls, in either timing, and the pooled form has under two per cent of its
 dependent variable's variation between states to explain in the first place. We
 report the growth hypothesis as unsupported by this panel.
 
+\subsection{Robustness and diagnostics}
+
+Two objections arrive before a referee has finished the results, and both can be
+answered from the panel. The first is that a five-year window containing a
+pandemic may be driving everything. The second is that ten states leave any
+estimate hostage to one of them. Table~\ref{tab:robust} refits the within-state
+specification of Model 1 dropping, in turn, the COVID year, Jharkhand, and Uttar
+Pradesh.
+
+\begin{table}[H]
+\centering
+\caption{Model 1 within-state coefficients across subsamples.}
+\label{tab:robust}
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Subsample & $n$ & Fiscal deficit & Debt & Own tax rev. & Capital exp. \\
+\midrule
+Baseline, all data          & 48 & $+0.566$ & $+0.353$ & $+0.107$ & $-0.173$ \\
+                            &    & (0.000)  & (0.000)  & (0.684)  & (0.571)  \\
+Excluding FY 2020--21       & 39 & $+0.802$ & $+0.324$ & $+0.535$ & $-0.207$ \\
+                            &    & (0.017)  & (0.002)  & (0.260)  & (0.480)  \\
+Excluding Jharkhand         & 43 & $-0.310$ & $+0.182$ & $+0.019$ & $+0.414$ \\
+                            &    & (0.141)  & (0.015)  & (0.922)  & (0.084)  \\
+Excluding Uttar Pradesh     & 45 & $+0.532$ & $+0.366$ & $+0.092$ & $-0.186$ \\
+                            &    & (0.000)  & (0.000)  & (0.711)  & (0.555)  \\
+\bottomrule
+\end{tabular}
+\tnote{Driscoll-Kraay $p$-values in parentheses.}
+\end{table}
+
+Debt is the stable coefficient: $+0.353$ at baseline, $+0.324$ without the COVID
+year and $+0.366$ without Uttar Pradesh, and $+0.182$ without Jharkhand ---
+smaller, but the same sign and still significant. That Uttar Pradesh changes
+almost nothing is the specific check its two censored cells invite. The fiscal
+deficit coefficient is not stable: dropping Jharkhand reverses its sign
+altogether. This is consistent with the bootstrap verdict of
+Table~\ref{tab:boot}, which already declines to credit a deficit effect, and it
+is why none is claimed here.
+
+\begin{table}[H]
+\centering
+\caption{Specification and diagnostic tests.}
+\label{tab:diag}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Test & Model 1 (log FDI) & Model 2 (growth) \\
+\midrule
+F-test for poolability                   & 6.741 $(p<0.0001)$ & 0.818 $(p=0.603)$ \\
+Breusch-Pagan LM, pooled vs.\ RE         & 0.397 $(p=0.529)$  & 2.569 $(p=0.109)$ \\
+Pesaran CD, cross-sectional dependence   & 0.019 $(p=0.985)$  & 8.397 $(p<0.0001)$ \\
+Wooldridge, first-order serial corr.     & $-0.051$ $(p=0.061)$ & $-0.092$ $(p=0.021)$ \\
+Modified Wald, groupwise heterosked.     & 347.33 $(p<0.0001)$ & 184.58 $(p<0.0001)$ \\
+Ramsey RESET, functional form            & 1.455 $(p=0.246)$  & --- \\
+\bottomrule
+\end{tabular}
+\tnote{The Hausman test is not computable for Model 1 and returns $p=0.177$ for
+Model 2. Wooldridge tests $H_0: \rho = -0.5$.}
+\end{table}
+
+Three of these bear on how the estimates should be read. Groupwise
+heteroskedasticity is present in both models, which is why every standard error
+reported here is robust. Cross-sectional dependence and serial correlation are
+present in the growth equation and not in the FDI equation, which is among the
+reasons Section 4.3 declines to claim a growth result. And the poolability test
+rejects for Model 1 but not for Model 2, which is why the FDI specification
+carries state fixed effects while the growth specification gains little from
+them.
+
 \section{The regional confound}
 
 Group the ten states by region and the debt ordering is largely a regional
@@ -355,6 +426,20 @@ Gujarat), 26.2 in the south (Karnataka, Tamil Nadu, Telangana), 33.1 in the nort
 Bengal). Seventy-two per cent of the cross-state variance in debt lies between
 those four groups rather than within them. Regional indicators alone explain more
 of log FDI than debt alone does, at $R^2 = 0.60$ against $0.31$.
+
+Figure~\ref{fig:region} shows the problem directly. The four groups separate
+along the debt axis almost without overlap: the two western states hold the
+low-debt, high-FDI corner, the three southern states sit beside them, and the
+northern and eastern states occupy the high-debt end. A line fitted through these
+ten points is a debt line and a region line at once, and nothing in the figure
+tells them apart.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{figures/fig01_region.pdf}
+\caption{Five-year mean debt against five-year mean log FDI, by region.}
+\label{fig:region}
+\end{figure}
 
 Table~\ref{tab:region} reports what happens to each of the paper's estimates when
 regional indicators are added. The pooled coefficient reverses sign and becomes
@@ -401,6 +486,21 @@ absorb three of the nine between-state degrees of freedom, and debt and region
 are close to collinear by construction. A reader who prefers the regional reading
 cannot be refuted from these data.
 
+One further alternative deserves stating, because it pushes the same way. DPIIT
+records equity inflows against the state in which the recipient company is
+registered, not the state in which the investment is deployed. That error is not
+classical: it concentrates in the states hosting corporate headquarters, which
+here are Maharashtra, Karnataka and Gujarat, three of the four lowest-debt states
+in the panel. A registered-office effect would therefore bias the between-state
+coefficient in exactly the direction we report. The closest available test is a
+market-size control, since headquarters concentration follows market size above
+all: adding log GSDP to the pooled specification leaves the debt coefficient at
+$-0.173$, essentially unmoved, while collapsing the literacy and capital
+expenditure coefficients, which are themselves scale proxies. That does not rule
+the channel out --- a control for size is not a control for where a firm chooses
+to register --- but it does mean the concern cannot be carried by state size
+alone.
+
 That is a statement about the design rather than about the question, and the
 distinction matters because the Commission's annexures already contain the fiscal
 side of the remedy. The Sixteenth Finance Commission reports all four indicators
@@ -437,6 +537,15 @@ NITI Aayog (2025) being the immediate case --- the result is a caution. The
 composite ranking constructed here is outperformed by debt alone on every outcome
 tested, and a composite validated against no outcome cannot know whether it is
 measuring anything.
+
+Three limits bound all of this beyond the identification problem itself. The
+panel is short and one of its five years is an extreme common shock, so the
+within-state estimates describe that window as much as any behavioural
+relationship. Debt is the on-budget figure from the audited accounts and excludes
+off-budget guarantees, which several of these states use. And association is all
+a five-year panel of ten states can support: reverse causality, in which
+anticipated investment relaxes a state's borrowing constraint rather than the
+reverse, is not tested here and cannot be ruled out.
 
 The extension that would settle the question is specific rather than aspirational:
 a panel wide enough to hold region fixed while debt still varies within it.
