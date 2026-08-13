@@ -35,11 +35,11 @@ paper/latex/*.pdf
 # sources, rebuilt on demand, and hashed per file, so it churns on every run
 graphify-out/
 
-# Economics Bulletin build artefacts. The PDF is deliberately NOT ignored here
-# (unlike paper/latex/) because it is the file uploaded to the journal.
-paper/submission/eb_short/*.aux
-paper/submission/eb_short/*.log
-paper/submission/eb_short/*.out
+# Venue notes, the submission ladder and the cut prepared for a particular
+# journal. Working material about where to publish, not part of the research
+# record — and the handling editor reaches this repository from the paper's
+# data-availability line.
+paper/submission/
 
 # The FC-16 annexures PDF is a 5.6 MB public document, cited in the paper and
 # downloadable from indiabudget.gov.in. code/verify_against_fc16.py expects it
@@ -53,7 +53,3 @@ paper/submission/eb_short/*.out
 # from accessecon.com. Compliance against it is recorded in
 # paper/submission/eb_short/README.md rather than by redistributing the PDF.
 /Economics Bulletin author guildlines-2012.pdf
-
-# Supplement archive uploaded with the Economics Bulletin submission. Repacked
-# from code/ and data/, which are already tracked — rebuild, do not commit.
-paper/submission/eb_short/*.zip
