@@ -2,11 +2,11 @@
 
 Panel evidence and machine-learning validation from India's ten largest FDI-recipient states, FY 2019-20 to FY 2023-24.
 
-**R Vinay Kumar** — author
+**R Vinay Kumar**
 Department of Advanced Computing, St. Joseph's University, Bengaluru, Karnataka, India
 rvinaykumar6924@gmail.com
 
-**S. Dutta** — research guide
+**S. Dutta**
 Department of Advanced Computing, St. Joseph's University, Bengaluru, Karnataka, India
 duttasanjay098@gmail.com
 
