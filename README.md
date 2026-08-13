@@ -3,11 +3,11 @@
 Panel evidence and machine-learning validation from India's ten largest FDI-recipient states, FY 2019-20 to FY 2023-24.
 
 **R Vinay Kumar**
-Department of Advanced Computing, St. Joseph's University, Bengaluru, Karnataka, India
+Department of Advanced Computing, St Joseph's University, Bengaluru, Karnataka, India
 rvinaykumar6924@gmail.com
 
 **S. Dutta**
-Department of Advanced Computing, St. Joseph's University, Bengaluru, Karnataka, India
+Department of Advanced Computing, St Joseph's University, Bengaluru, Karnataka, India
 duttasanjay098@gmail.com
 
 **📄 [Download the paper](https://github.com/fbivinay/Fiscal-Discipline-and-Investment-Outcomes/raw/main/paper/Fiscal_Discipline_and_Investment_Outcomes.docx)** (.docx — GitHub cannot preview it in the browser)
