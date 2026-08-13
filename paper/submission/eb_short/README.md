@@ -17,12 +17,12 @@ Every rule in `Economics Bulletin author guildlines-2012.pdf`, and where it is m
 
 | Rule (journal's wording) | Status |
 |---|---|
-| "Be **seven** printed pages or less excluding tables, figures, appendices and references" | 5 prose pages. `tools/pagecount.py` measures it the way the rule is written, by stripping floats and back matter and recounting |
+| "Be seven printed pages or fewer excluding tables, figures, and references" | 6 prose pages. `tools/pagecount.py` measures it the way the rule is written, by stripping floats and back matter and recounting. Note the live submission page drops **appendices** from the exclusion list the 2012 PDF gave — an appendix bound into the manuscript may now count, so this note has none |
 | "Be written in English" | Yes |
 | "Use 12pt Times Roman, CM … or other similar font" | `mathptmx` (Times), `12pt` class option |
 | "Pages should be single spaced with one-inch margins" | `geometry margin=1in`, no line-spacing package |
 | "Sections and subsections … numbered consecutively in Arabic numerals (as in section 1. and subsection 1.2)" | `\titleformat` gives `1.` for sections and `4.1` for subsections — matching the period convention in their own example |
-| "Section headings should be centered and in bold 12pt type" | Both section and subsection headings centred and bold at 12pt |
+| "Section headings should be centered and in bold **14pt** type" | Sections centred and bold at exactly 14pt via `\fontsize{14}{17}`; subsections centred and bold at 12pt. The 2012 PDF said 12pt — the live page says 14, and the live page wins. At final-draft stage the requirement changes again, to **16pt** |
 | "Figures, and tables should be included **within** the manuscript in the correct place… do not substitute text such as 'figure 1 about here'" | All six tables set `[H]` at the point of discussion. No placeholders |
 | "**Do not include a title page with any submission** … the first page of the PDF you submit should begin with the title of the first section" | Page 1 opens at `1. Introduction` |
 | "Do not include page numbers anywhere in your final PDF" | `\pagestyle{empty}` |
@@ -92,7 +92,16 @@ St. Joseph's University, Bengaluru, Karnataka, India.
 **Keywords:** fiscal discipline; foreign direct investment; sub-national public
 finance; panel data; India
 
-**JEL:** H72, F21, H74, O53, C33
+**JEL:** H72, F21, H74, H63, R11
+
+C33 (Panel Data Models) was dropped. The submission page warns that C1 "and the
+other 'C' methodology JELs should only be used for papers that make a
+contribution to econometric theory, not for empirical papers in general.
+Misclassified submissions may be declined without further review." This paper
+uses panel methods, it does not contribute to them. H63 (debt) and R11 (regional
+economic activity) replace it, and R11 in particular matches the headline claim
+better than a methods code ever did — the journal says it routes referees by
+these codes.
 
 ## What was cut, and why
 
@@ -151,6 +160,14 @@ rather than a truncated long one.
 6. **Know what becomes public.** "The supplemental data and appendix will be made
    publicly available. If you do not wish this to happen do not upload anything in
    these slots with your final draft."
+7. **Do not chase the editors.** "Please do not request updates on the status of
+   submitted papers for at least four months." Plan around that, not around the
+   3–6 week figure aggregator sites quote.
+8. **Fix the author list now.** Coauthors may be added to a submission or a
+   revision, but "once a paper is accepted, the set of authors is fixed.
+   Coauthors cannot be added with a final draft."
+9. **Three submissions per year, maximum**, coauthored papers included.
+   "Submissions in excess of this will be declined without further review."
 
 ## What compliance does and does not buy
 

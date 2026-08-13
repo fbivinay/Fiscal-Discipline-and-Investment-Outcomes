@@ -3,13 +3,14 @@
 % Formatting follows "Instructions to authors for submissions and revisions"
 % (AccessEcon) to the letter. Every rule and where it is satisfied:
 %
-%   Seven printed pages or less, excluding tables, figures, appendices and
-%       references .................................. tools/pagecount.py verifies
+%   Seven printed pages or fewer, excluding tables, figures and references
+%       (the live submission page drops "appendices" from the exclusion list
+%       the 2012 PDF gave) ........................... tools/pagecount.py verifies
 %   Written in English ............................... yes
 %   12pt Times Roman / CM or similar ................. mathptmx, 12pt class
 %   Single spaced, one-inch margins .................. geometry margin=1in
 %   Sections numbered consecutively in Arabic ........ \titleformat below
-%   Section headings centred, bold, 12pt ............. \titleformat below
+%   Section headings centred, bold, 14pt ............. \titleformat below
 %   Tables and figures within the text, in place ..... [H] floats, no "table
 %                                                      about here" placeholders
 %   No title page ................................... document opens at \section
@@ -48,7 +49,9 @@
 % (as in section 1. and subsection 1.2). Section headings should be centered and
 % in bold 12pt type."  Note the journal's own example: a period after a section
 % number, none after a subsection number.
-\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
+% The live submission page asks for 14pt section headings (the 2012 PDF said
+% 12pt). Set the size exactly rather than trusting \large, which is 14.4pt here.
+\titleformat{\section}{\centering\bfseries\fontsize{14}{17}\selectfont}{\thesection.}{0.5em}{}
 \titleformat{\subsection}{\centering\bfseries\normalsize}{\thesubsection}{0.5em}{}
 \titlespacing*{\section}{0pt}{12pt}{6pt}
 \titlespacing*{\subsection}{0pt}{10pt}{4pt}
