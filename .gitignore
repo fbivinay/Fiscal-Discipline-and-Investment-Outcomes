@@ -53,3 +53,7 @@ paper/submission/eb_short/*.out
 # from accessecon.com. Compliance against it is recorded in
 # paper/submission/eb_short/README.md rather than by redistributing the PDF.
 /Economics Bulletin author guildlines-2012.pdf
+
+# Supplement archive uploaded with the Economics Bulletin submission. Repacked
+# from code/ and data/, which are already tracked — rebuild, do not commit.
+paper/submission/eb_short/*.zip
