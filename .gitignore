@@ -25,6 +25,8 @@ venv/
 paper/latex/*.aux
 paper/latex/*.log
 paper/latex/*.out
+paper/latex/*.fls
+paper/latex/*.fdb_latexmk
 paper/latex/*.pdf
 !paper/latex/figures/*.pdf
 
